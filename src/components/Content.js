@@ -14,6 +14,8 @@ import {
 } from '@mui/material';
 import { GlobalContext } from '../context/GlobalContext';
 import LeafletMap from '../components/LeafletMap';
+import ProductDataView from '../components/ProductDataView';
+
 
 const Content = () => {
   const {
@@ -79,7 +81,9 @@ const Content = () => {
             flexDirection: 'column',
             overflow: 'hidden',
           }}
-        ></Paper>
+        >
+          <ProductDataView />
+        </Paper>
       </Box>
 
       {/* Right Column: Map */}

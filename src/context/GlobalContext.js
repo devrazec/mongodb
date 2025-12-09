@@ -19,7 +19,6 @@ export function GlobalProvider({ children }) {
     { name: 'Spanish', code: 'ES', icon: 'fi fi-es' },
   ]);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [product, setProduct] = useState(productJson);
   const [city, setCity] = useState([
     { label: 'Lisbon', value: 'Lisbon', colorCode: '#0074D9' }, // blue
     { label: 'Porto', value: 'Porto', colorCode: '#FF4136' }, // red
@@ -140,6 +139,25 @@ export function GlobalProvider({ children }) {
   const [geoInitialView, setGeoInitialView] = useState([39.3999, -8.2245]);
   const [geoPortugal, setGeoPortugal] = useState(portugalJson);
 
+  const [geoCityBounds, setGeoCityBounds] = useState({
+    Lisbon: { latMin: 38.69, latMax: 38.82, lngMin: -9.25, lngMax: -9.05 },
+    Porto: { latMin: 41.11, latMax: 41.19, lngMin: -8.74, lngMax: -8.53 },
+    Faro: { latMin: 37.0, latMax: 37.2, lngMin: -8.1, lngMax: -7.8 },
+    Coimbra: { latMin: 40.18, latMax: 40.23, lngMin: -8.48, lngMax: -8.4 },
+    Braga: { latMin: 41.53, latMax: 41.57, lngMin: -8.47, lngMax: -8.42 },
+    Bragança: { latMin: 41.79, latMax: 41.83, lngMin: -6.75, lngMax: -6.7 },
+    Leiria: { latMin: 39.74, latMax: 39.76, lngMin: -8.87, lngMax: -8.8 },
+    Guarda: { latMin: 40.53, latMax: 40.56, lngMin: -7.48, lngMax: -7.42 },
+  });
+
+  const [dataProduct, setDataProduct] = useState([]);
+  const [dataProductName, setDataProductName] = useState([]);
+  const [dataSellerName, setDataSellerName] = useState([]);
+  const [dataBroker, setDataBroker] = useState([]);
+  const [dataProductJson, setDataProductJson] = useState(productJson);
+
+
+
   return (
     <GlobalContext.Provider
       value={{
@@ -155,8 +173,6 @@ export function GlobalProvider({ children }) {
         setLanguage,
         selectedProduct,
         setSelectedProduct,
-        product,
-        setProduct,
         selectedCity,
         setSelectedCity,
         city,
@@ -180,6 +196,12 @@ export function GlobalProvider({ children }) {
         geoInitialView,
         setGeoInitialView,
         geoPortugal, setGeoPortugal,
+        geoCityBounds, setGeoCityBounds,
+        dataProduct, setDataProduct,
+        dataProductName, setDataProductName,
+        dataSellerName, setDataSellerName,
+        dataBroker, setDataBroker,
+        dataProductJson, setDataProductJson,
       }}
     >
       {children}
