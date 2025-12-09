@@ -59,7 +59,50 @@ npm run deploy
 gh-pages/.nojekyll
 gh-pages/_next/.nojekyll
 
+-- Material UI
+
+npm i -S @mui/material @emotion/react @emotion/styled
+
+-- Primereact UI
+
+npm i -S primereact primeicons primeflex
+
+-- Fonts
+
+npm i -S @fontsource/roboto
+
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
+-- Icons
+
+npm i -S flag-icons @mui/icons-material iconsax-react @iconify/react react-icons
+
+-- Components
+
+npm i -S @mui/x-date-pickers dayjs @mui/x-data-grid @mui/x-data-grid-generator uuid
+
+-- Maps
+
+npm i -S leaflet leaflet-draw react-leaflet@next react-leaflet-cluster react-leaflet-draw
+
+-- Database
+
+npm i -S mongodb
+npm i -S firebase
+npm i -S better-sqlite3
+
 ```
+
+# Web Interface
+
+http://localhost:3000
+
+![Pic0](./img/pic0.png)
+![Pic1](./img/pic1.png)
+![Pic2](./img/pic2.png)
 
 # Demo
 
@@ -69,6 +112,6 @@ https://devrazec.github.io/mongodb
 
 https://github.com/devrazec/mongodb
 
-# Files
+# HTTPS Project Files
 
 https://github.com/devrazec/mongodb/tree/gh-pages
