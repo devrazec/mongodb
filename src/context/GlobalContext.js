@@ -3,6 +3,8 @@
 import { createContext, useState, useEffect } from 'react';
 import portugalJson from '../data/portugal.json';
 import productJson from '../data/product.json';
+import L from "leaflet";
+
 export const GlobalContext = createContext();
 
 export function GlobalProvider({ children }) {
@@ -87,8 +89,55 @@ export function GlobalProvider({ children }) {
     { label: 'Rust', value: 'Rust', colorCode: '#B7410E' },
     { label: 'Grey Melange', value: 'Grey Melange', colorCode: '#BEBEBE' },
   ]);
-
   const [selectedColor, setSelectedColor] = useState([]);
+
+  const [gender, setGender] = useState([
+    { label: 'Boys', value: 'Boys', colorCode: '#0074D9' }, // blue
+    { label: 'Girls', value: 'Girls', colorCode: '#B10DC9' }, // red
+  ]);
+  const [selectedGender, setSelectedGender] = useState([]);
+
+  const [geoLocation, setGeoLocation] = useState({
+    All: L.latLngBounds([
+      [36.9, -9.5], // southwestern Portugal
+      [42.1, -6.2], // northeastern Portugal
+    ]),
+    Lisbon: L.latLngBounds([
+      [38.69, -9.25],
+      [38.82, -9.05],
+    ]),
+    Porto: L.latLngBounds([
+      [41.11, -8.74],
+      [41.19, -8.53],
+    ]),
+    Faro: L.latLngBounds([
+      [37.0, -8.1],
+      [37.2, -7.8],
+    ]),
+    Coimbra: L.latLngBounds([
+      [40.18, -8.48],
+      [40.23, -8.4],
+    ]),
+    Braga: L.latLngBounds([
+      [41.53, -8.47],
+      [41.57, -8.42],
+    ]),
+    Bragança: L.latLngBounds([
+      [41.79, -6.75],
+      [41.83, -6.7],
+    ]),
+    Leiria: L.latLngBounds([
+      [39.74, -8.87],
+      [39.76, -8.8],
+    ]),
+    Guarda: L.latLngBounds([
+      [40.53, -7.48],
+      [40.56, -7.42],
+    ]),
+  });
+
+  const [geoZoomView, setGeoZoomView] = useState(7);
+  const [geoInitialView, setGeoInitialView] = useState([39.3999, -8.2245]);
 
   return (
     <GlobalContext.Provider
@@ -119,6 +168,11 @@ export function GlobalProvider({ children }) {
         setSelectedColor,
         color,
         setColor,
+        selectedGender, setSelectedGender,
+        gender, setGender,
+        geoLocation, setGeoLocation,
+        geoZoomView, setGeoZoomView,
+        geoInitialView, setGeoInitialView,
       }}
     >
       {children}

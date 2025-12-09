@@ -4,46 +4,48 @@ import React, { useContext, useEffect } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
 import { MultiSelect } from 'primereact/multiselect';
 
-const SelectColor = () => {
+const SelectGender = () => {
   const {
-    darkMode,
-    setDarkMode,
-    mobileDevice,
-    setMobileDevice,
-    mobilePanel,
-    setMobilePanel,
-    selectedLanguage,
-    setSelectedLanguage,
-    language,
-    setLanguage,
-    selectedProduct,
-    setSelectedProduct,
-    product,
-    setProduct,
-    selectedCity,
-    setSelectedCity,
-    city,
-    setCity,
-    selectedCategory,
-    setSelectedCategory,
-    category,
-    setCategory,
-    selectedColor,
-    setSelectedColor,
-    color,
-    setColor,
+        darkMode,
+        setDarkMode,
+        mobileDevice,
+        setMobileDevice,
+        mobilePanel,
+        setMobilePanel,
+        selectedLanguage,
+        setSelectedLanguage,
+        language,
+        setLanguage,
+        selectedProduct,
+        setSelectedProduct,
+        product,
+        setProduct,
+        selectedCity,
+        setSelectedCity,
+        city,
+        setCity,
+        selectedCategory,
+        setSelectedCategory,
+        category,
+        setCategory,
+        selectedColor,
+        setSelectedColor,
+        color,
+        setColor,
+        selectedGender, setSelectedGender,
+        gender, setGender,
   } = useContext(GlobalContext);
 
   return (
     <div className="p-field">
       <MultiSelect
-        value={selectedColor}
-        onChange={e => setSelectedColor(e.value)}
-        options={color}
+        value={selectedGender}
+        onChange={e => setSelectedGender(e.value)}
+        options={gender}
         optionLabel="label"
         showClear={true}
-        placeholder="Color"
-        selectedItemsLabel="Color ({0})"
+        placeholder="Gender"
+        selectedItemsLabel="Gender ({0})"
         maxSelectedLabels={0}
         //className="w-full px-3 text-base text-white"
         //panelClassName="custom-multiselect-panel"
@@ -53,7 +55,7 @@ const SelectColor = () => {
         style={{
           borderRadius: '999px',
           //padding: "0.1rem",
-          backgroundColor: selectedColor.length > 0 ? '#057642' : '#00473C',
+          backgroundColor: selectedGender.length > 0 ? '#057642' : '#00473C',
           borderColor: '#ccc',
           border: '1px solid white',
           color: 'white',
@@ -96,4 +98,4 @@ const SelectColor = () => {
   );
 };
 
-export default React.memo(SelectColor);
+export default React.memo(SelectGender);

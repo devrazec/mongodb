@@ -50,7 +50,7 @@ const SelectCity = () => {
           border: '1px solid white',
           color: 'white',
           height: '40px',
-          minWidth: '150px',
+          minWidth: '190px',
         }}
         itemTemplate={option => (
           <div
