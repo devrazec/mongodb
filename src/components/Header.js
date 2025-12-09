@@ -2,7 +2,10 @@
 
 import React, { useContext, useEffect } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
-
+import MobilePanel from '../components/MobilePanel';
+import LanguageSelector from '../components/LanguageSelector';
+import SearchField from '../components/SearchField';
+import FilterBar from '../components/FilterBar';
 const Header = () => {
   const {
     darkMode,
@@ -48,9 +51,34 @@ const Header = () => {
 
         {/* SEARCH WITH AUTOCOMPLETE */}
         <div className="flex-1 mx-3">
-          <div className="flex"></div>
+          <div className="flex">
+            <SearchField />
+          </div>
         </div>
+
+        <div className="hidden lg:flex align-items-center gap-5">
+          <LanguageSelector />
+
+          <div className="text-sm text-left cursor-pointer">
+            <div>Hello, sign in</div>
+            <div className="font-bold">Account & Lists</div>
+          </div>
+
+          <div className="text-sm text-left cursor-pointer">
+            <div>Returns</div>
+            <div className="font-bold">& Orders</div>
+          </div>
+
+          <i className="pi pi-shopping-cart text-2xl cursor-pointer"></i>
+        </div>
+
+        {/* MOBILE CART ICON */}
+        <i className="pi pi-shopping-cart text-2xl cursor-pointer lg:hidden"></i>
       </div>
+
+      <FilterBar />
+
+      <MobilePanel />
     </div>
   );
 };

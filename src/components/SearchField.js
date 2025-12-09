@@ -2,8 +2,9 @@
 
 import React, { useContext, useEffect } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
+import { AutoComplete } from 'primereact/autocomplete';
 
-const Footer = () => {
+const SearchField = () => {
   const {
     darkMode,
     setDarkMode,
@@ -22,10 +23,14 @@ const Footer = () => {
   } = useContext(GlobalContext);
 
   return (
-    <div>
-      <h1>Footer Component</h1>
-    </div>
+    <AutoComplete
+      value={selectedProduct}
+      field="product"
+      placeholder="Search Products"
+      className="w-full"
+      inputClassName="w-full p-inputtext-lg py-2 text-lg border-round-md pl-2"
+    />
   );
 };
 
-export default React.memo(Footer);
+export default React.memo(SearchField);
