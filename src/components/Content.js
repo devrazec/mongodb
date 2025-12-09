@@ -43,9 +43,12 @@ const Content = () => {
     setSelectedColor,
     color,
     setColor,
-    selectedGender, setSelectedGender,
-    gender, setGender,
-    geoLocation, setGeoLocation,
+    selectedGender,
+    setSelectedGender,
+    gender,
+    setGender,
+    geoLocation,
+    setGeoLocation,
   } = useContext(GlobalContext);
 
   return (
@@ -76,8 +79,7 @@ const Content = () => {
             flexDirection: 'column',
             overflow: 'hidden',
           }}
-        >
-        </Paper>
+        ></Paper>
       </Box>
 
       {/* Right Column: Map */}

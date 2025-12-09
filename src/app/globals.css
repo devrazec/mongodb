@@ -41,10 +41,9 @@ body {
 @import '@fontsource/roboto/500.css';
 @import '@fontsource/roboto/700.css';
 
-
 .p-selectbutton .p-button.p-highlight {
-  background-color: #00473C;
-  border-color: #00473C;
+  background-color: #00473c;
+  border-color: #00473c;
 }
 
 .p-selectbutton .p-button.p-highlight:hover {

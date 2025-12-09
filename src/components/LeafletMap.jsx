@@ -5,9 +5,9 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-draw/dist/leaflet.draw.css';
 
-//import ResetView from './ResetView';
-//import ShowMyLocation from './ShowMyLocation';
-//import MaskLayer from './MaskLayer';
+import ResetView from './ResetView';
+import ShowMyLocation from './ShowMyLocation';
+import MaskLayer from './MaskLayer';
 
 import { GlobalContext } from '../context/GlobalContext';
 
@@ -39,11 +39,16 @@ const LeafletMap = () => {
     setSelectedColor,
     color,
     setColor,
-    selectedGender, setSelectedGender,
-    gender, setGender,
-    geoLocation, setGeoLocation,
-    geoZoomView, setGeoZoomView,
-    geoInitialView, setGeoInitialView,
+    selectedGender,
+    setSelectedGender,
+    gender,
+    setGender,
+    geoLocation,
+    setGeoLocation,
+    geoZoomView,
+    setGeoZoomView,
+    geoInitialView,
+    setGeoInitialView,
   } = useContext(GlobalContext);
 
   return (
@@ -59,8 +64,9 @@ const LeafletMap = () => {
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-
-
+      <ResetView />
+      <ShowMyLocation />
+      <MaskLayer />
     </MapContainer>
   );
 };

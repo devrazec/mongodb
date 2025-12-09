@@ -3,7 +3,7 @@
 import { createContext, useState, useEffect } from 'react';
 import portugalJson from '../data/portugal.json';
 import productJson from '../data/product.json';
-import L from "leaflet";
+import L from 'leaflet';
 
 export const GlobalContext = createContext();
 
@@ -138,6 +138,7 @@ export function GlobalProvider({ children }) {
 
   const [geoZoomView, setGeoZoomView] = useState(7);
   const [geoInitialView, setGeoInitialView] = useState([39.3999, -8.2245]);
+  const [geoPortugal, setGeoPortugal] = useState(portugalJson);
 
   return (
     <GlobalContext.Provider
@@ -168,11 +169,17 @@ export function GlobalProvider({ children }) {
         setSelectedColor,
         color,
         setColor,
-        selectedGender, setSelectedGender,
-        gender, setGender,
-        geoLocation, setGeoLocation,
-        geoZoomView, setGeoZoomView,
-        geoInitialView, setGeoInitialView,
+        selectedGender,
+        setSelectedGender,
+        gender,
+        setGender,
+        geoLocation,
+        setGeoLocation,
+        geoZoomView,
+        setGeoZoomView,
+        geoInitialView,
+        setGeoInitialView,
+        geoPortugal, setGeoPortugal,
       }}
     >
       {children}
