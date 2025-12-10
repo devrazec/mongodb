@@ -61,9 +61,46 @@ const ProductDataView = () => {
         dataProductName, setDataProductName,
         dataSellerName, setDataSellerName,
         dataBroker, setDataBroker,
+        sortField, setSortField,
+        sortOrder, setSortOrder,
+        productLayout, setProductLayout,
     } = useContext(GlobalContext);
 
     const [layout, setLayout] = useState('grid');
+
+    const filteredData = () => {
+        if (!dataProduct) return [];
+
+        let filtered = [...dataProduct];
+
+        if (selectedCategory.length > 0) {
+            filtered = filtered.filter(p => selectedCategory.includes(p.category));
+        }
+        if (selectedCity.length > 0) {
+            filtered = filtered.filter(p => selectedCity.includes(p.location));
+        }
+        if (selectedColor.length > 0) {
+            filtered = filtered.filter(p => selectedColor.includes(p.color));
+        }
+        if (selectedGender.length > 0) {
+            filtered = filtered.filter(p => selectedGender.includes(p.gender));
+        }
+
+        // Sorting
+        if (sortField) {
+            filtered.sort((a, b) => {
+                let valA = a[sortField];
+                let valB = b[sortField];
+                if (typeof valA === 'string') valA = valA.toLowerCase();
+                if (typeof valB === 'string') valB = valB.toLowerCase();
+                if (valA < valB) return sortOrder === 1 ? -1 : 1;
+                if (valA > valB) return sortOrder === 1 ? 1 : -1;
+                return 0;
+            });
+        }
+
+        return filtered;
+    };
 
     const getSeverity = (product) => {
         switch (product.status) {
@@ -150,21 +187,14 @@ const ProductDataView = () => {
         return <div className="grid grid-nogutter">{products.map((product, index) => itemTemplate(product, layout, index))}</div>;
     };
 
-    const header = () => {
-        return (
-            <div className="flex justify-content-end">
-                <DataViewLayoutOptions layout={layout} onChange={(e) => setLayout(e.value)} />
-            </div>
-        );
-    };
-
     return (
-        <div className="card">
+        <div className="card" style={{ height: '100%', overflowY: 'auto' }}>
             <DataView
-                value={dataProduct}
+                value={filteredData()}
                 listTemplate={listTemplate}
-                layout={layout}
-                header={header()}
+                layout={productLayout}
+                paginator
+                rows={6}
             />
 
         </div>

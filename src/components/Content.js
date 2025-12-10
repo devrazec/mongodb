@@ -82,7 +82,9 @@ const Content = () => {
             overflow: 'hidden',
           }}
         >
-          
+          <Box sx={{ flex: 1, overflowY: 'auto' }}>
+            <ProductDataView />
+          </Box>
         </Paper>
       </Box>
 
@@ -99,7 +101,7 @@ const Content = () => {
             height: '100%',
             display: 'flex',
             flexDirection: 'column',
-            overflow: 'hidden',
+            overflow: 'auto',
           }}
         >
           <Box

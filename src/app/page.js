@@ -1,4 +1,4 @@
-import DataGenerator from '../utils/dataGenerator';
+import DataGenerator from '../utils/DataGenerator';
 
 import Header from '../components/Header';
 
@@ -9,7 +9,7 @@ import Footer from '../components/Footer';
 export default function Home() {
   return (
     <>
-      <DataGenerator />
+      {/* <DataGenerator /> */}
       <Header />
       <Content />
     </>

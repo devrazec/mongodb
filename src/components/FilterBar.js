@@ -7,6 +7,9 @@ import SelectCity from '../components/SelectCity';
 import SelectCategory from '../components/SelectCategory';
 import SelectColor from '../components/SelectColor';
 import SelectGender from '../components/SelectGender';
+import SortBy from '../components/SortBy';
+import ProductLayout from '../components/ProductLayout';
+
 
 const FilterBar = () => {
   const {
@@ -46,6 +49,11 @@ const FilterBar = () => {
         },
       }}
     >
+      <ProductLayout />
+
+    <div className="font-bold text-white">Sort by:</div>
+      <SortBy />
+    <div className="font-bold text-white">Filter by:</div>
       <SelectGender />
       <SelectCategory />
       <SelectColor />

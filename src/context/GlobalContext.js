@@ -49,7 +49,6 @@ export function GlobalProvider({ children }) {
     { label: 'Viana', value: 'Viana', colorCode: '#0D47A1' },
     { label: 'VilaReal', value: 'VilaReal', colorCode: '#7CB342' },
     { label: 'Setubal', value: 'Setubal', colorCode: '#673AB7' },
-
   ]);
   const [selectedCity, setSelectedCity] = useState([]);
 
@@ -113,8 +112,8 @@ export function GlobalProvider({ children }) {
   const [selectedColor, setSelectedColor] = useState([]);
 
   const [gender, setGender] = useState([
-    { label: 'Boys', value: 'Boys', colorCode: '#0074D9' }, // blue
-    { label: 'Girls', value: 'Girls', colorCode: '#B10DC9' }, // red
+    { label: 'Boys', value: 'Boys', colorCode: '#0074D9' },
+    { label: 'Girls', value: 'Girls', colorCode: '#B10DC9' },
   ]);
   const [selectedGender, setSelectedGender] = useState([]);
 
@@ -155,6 +154,12 @@ export function GlobalProvider({ children }) {
   const [dataProductName, setDataProductName] = useState(dataProductNameJson);
   const [dataSellerName, setDataSellerName] = useState(dataSellerNameJson);
   const [dataBroker, setDataBroker] = useState(dataBrokerJson);
+
+  const [sortField, setSortField] = useState(null);
+  const [sortOrder, setSortOrder] = useState(null);
+
+  const [productLayout, setProductLayout] = useState('grid');
+
 
   return (
     <GlobalContext.Provider
@@ -210,6 +215,9 @@ export function GlobalProvider({ children }) {
         dataProductName, setDataProductName,
         dataSellerName, setDataSellerName,
         dataBroker, setDataBroker,
+        sortField, setSortField,
+        sortOrder, setSortOrder,
+        productLayout, setProductLayout,
       }}
     >
       {children}

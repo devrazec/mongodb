@@ -1,11 +1,9 @@
 'use client';
 
-import React, { useState, useContext, useEffect, useMemo, useTransition } from 'react';
+import React, { useState, useContext, useEffect, useMemo } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
 import { useDemoData } from "@mui/x-data-grid-generator";
 import { v4 as uuidv4 } from "uuid";
-import { saveJson } from '@/actions/saveJson';
-
 
 export default function DataGenerator() {
     const {
@@ -62,7 +60,7 @@ export default function DataGenerator() {
         dataBroker, setDataBroker,
     } = useContext(GlobalContext);
 
-    const [isPending, startTransition] = useTransition();
+    const [saved, setSaved] = useState(false);
 
     const getRandomId = () => {
         const id = uuidv4();
@@ -131,7 +129,7 @@ export default function DataGenerator() {
 
         // get product names, filter empty ones
         const names = products
-            .map((p) => p.product)
+            .map((p) => p.name)
             .filter(Boolean);
 
         // dedupe using Set
@@ -178,27 +176,53 @@ export default function DataGenerator() {
         return unique;
     }, [products]);
 
-    useEffect(() => {
-        if (
-            !products.length ||
-            !productListName.length ||
-            !sellerList.length ||
-            !brokerList.length
-        ) return;
+    async function saveData(data, fileName) {
+        try {
+            const response = await fetch('/mongodb/api/saveData', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ data, fileName }),
+            });
 
+            const result = await response.json();
+            console.log("FILE SAVED:", result);
+        } catch (err) {
+            console.error("SAVE FAILED:", err);
+        }
+    }
+
+    useEffect(() => {
+        const ready =
+            CommodityData?.rows?.length &&
+            city?.length &&
+            storeProduct?.length &&
+            products.length &&
+            productListName.length &&
+            sellerList.length &&
+            brokerList.length;
+
+        if (!ready || saved) return;
+
+        console.log("✓ All data READY — generating final JSON...");
+
+        setSaved(true);
         setDataProduct(products);
         setDataProductName(productListName);
         setDataSellerName(sellerList);
         setDataBroker(brokerList);
 
-        // Server Action run inside a transition
-        startTransition(() => {
-            saveJson(products, "data-product2.json")
-                .then(result => console.log("Saved JSON:", result))
-                .catch(err => console.error("Error saving JSON:", err));
-        });
+        //saveData(products, "data-product.json");
+    }, [
+        CommodityData,
+        city,
+        storeProduct,
+        products,
+        productListName,
+        sellerList,
+        brokerList,
+        saved,
+    ]);
 
-    }, [products, productListName, sellerList, brokerList]);
 
     //console.log("city:", city);
     //console.log("geoCityBounds:", geoCityBounds);
