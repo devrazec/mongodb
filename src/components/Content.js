@@ -16,7 +16,6 @@ import { GlobalContext } from '../context/GlobalContext';
 import LeafletMap from '../components/LeafletMap';
 import ProductDataView from '../components/ProductDataView';
 
-
 const Content = () => {
   const {
     darkMode,

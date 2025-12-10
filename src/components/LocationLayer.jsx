@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useEffect, useContext } from "react";
-import { useMap } from "react-leaflet";
-import L from "leaflet";
-import { GlobalContext } from "../context/GlobalContext";
+import { useEffect, useContext } from 'react';
+import { useMap } from 'react-leaflet';
+import L from 'leaflet';
+import { GlobalContext } from '../context/GlobalContext';
 
 const LocationLayer = () => {
   const map = useMap();
@@ -21,7 +21,7 @@ const LocationLayer = () => {
     geoBeja,
     geoViana,
     geoVilaReal,
-    geoSetubal
+    geoSetubal,
   } = useContext(GlobalContext);
 
   // All districts provided by your global context
@@ -41,18 +41,18 @@ const LocationLayer = () => {
   };
 
   const borderColors = {
-    Lisbon: "#1A73E8",
-    Porto: "#E91E63",
-    Faro: "#F57C00",
-    Coimbra: "#43A047",
-    Braga: "#8E24AA",
-    Braganca: "#39CCCC",
-    Leiria: "#0097A7",
-    Guarda: "#C62828",
-    Beja: "#6D4C41",
-    Viana: "#0D47A1",
-    VilaReal: "#7CB342",
-    Setubal: "#673AB7",
+    Lisbon: '#1A73E8',
+    Porto: '#E91E63',
+    Faro: '#F57C00',
+    Coimbra: '#43A047',
+    Braga: '#8E24AA',
+    Braganca: '#39CCCC',
+    Leiria: '#0097A7',
+    Guarda: '#C62828',
+    Beja: '#6D4C41',
+    Viana: '#0D47A1',
+    VilaReal: '#7CB342',
+    Setubal: '#673AB7',
   };
 
   useEffect(() => {
@@ -60,14 +60,14 @@ const LocationLayer = () => {
 
     const layers = [];
 
-    Object.keys(districts).forEach((name) => {
+    Object.keys(districts).forEach(name => {
       const geo = districts[name];
       if (!geo) return;
 
       const defaultStyle = {
-        color: borderColors[name] || "#000",
+        color: borderColors[name] || '#000',
         weight: 3,
-        fillColor: borderColors[name] || "#000",
+        fillColor: borderColors[name] || '#000',
         fillOpacity: 0.1,
       };
 
@@ -83,7 +83,7 @@ const LocationLayer = () => {
           // --- Tooltip ---
           layer.bindTooltip(name, {
             permanent: false,
-            direction: "top",
+            direction: 'top',
             opacity: 0.9,
           });
 
@@ -116,7 +116,7 @@ const LocationLayer = () => {
     });
 
     return () => {
-      layers.forEach((layer) => map.removeLayer(layer));
+      layers.forEach(layer => map.removeLayer(layer));
     };
   }, [
     map,
@@ -131,7 +131,7 @@ const LocationLayer = () => {
     geoBeja,
     geoViana,
     geoVilaReal,
-    geoSetubal
+    geoSetubal,
   ]);
 
   return null;

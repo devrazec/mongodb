@@ -45,7 +45,8 @@ const MaskLayer = () => {
     setGeoZoomView,
     geoInitialView,
     setGeoInitialView,
-    geoPortugal, setGeoPortugal,
+    geoPortugal,
+    setGeoPortugal,
   } = useContext(GlobalContext);
 
   useEffect(() => {

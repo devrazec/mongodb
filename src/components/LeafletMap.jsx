@@ -10,7 +10,6 @@ import ShowMyLocation from './ShowMyLocation';
 import PortugalLayer from './PortugalLayer';
 import LocationLayer from './LocationLayer';
 
-
 import { GlobalContext } from '../context/GlobalContext';
 
 const LeafletMap = () => {

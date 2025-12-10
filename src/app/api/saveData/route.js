@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+import fs from 'fs';
+import path from 'path';
 
 export async function POST(req) {
   // Parse request JSON
@@ -7,23 +7,23 @@ export async function POST(req) {
   const { data, fileName } = body;
 
   // File safety
-  const safeFileName = fileName?.endsWith(".json") ? fileName : "data.json";
-  const filePath = path.join(process.cwd(), "src", "data", safeFileName);
+  const safeFileName = fileName?.endsWith('.json') ? fileName : 'data.json';
+  const filePath = path.join(process.cwd(), 'src', 'data', safeFileName);
 
   // Save file
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 
   // CORS Headers
   const headers = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
   };
 
-  return new Response(
-    JSON.stringify({ message: `Saved as ${safeFileName}` }),
-    { status: 200, headers }
-  );
+  return new Response(JSON.stringify({ message: `Saved as ${safeFileName}` }), {
+    status: 200,
+    headers,
+  });
 }
 
 // Handle preflight OPTIONS request
@@ -31,9 +31,9 @@ export async function OPTIONS() {
   return new Response(null, {
     status: 204,
     headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "POST, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type",
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
     },
   });
 }
