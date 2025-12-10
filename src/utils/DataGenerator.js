@@ -1,25 +1,68 @@
 'use client';
 
-import React, { useState, useContext, useEffect, useMemo } from 'react';
+import React, { useState, useContext, useEffect, useMemo, useTransition } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
 import { useDemoData } from "@mui/x-data-grid-generator";
 import { v4 as uuidv4 } from "uuid";
+import { saveJson } from '@/actions/saveJson';
+
 
 export default function DataGenerator() {
     const {
+        darkMode,
+        setDarkMode,
+        mobileDevice,
+        setMobileDevice,
+        mobilePanel,
+        setMobilePanel,
+        selectedLanguage,
+        setSelectedLanguage,
+        language,
+        setLanguage,
+        selectedProduct,
+        setSelectedProduct,
         selectedCity,
         setSelectedCity,
         city,
+        setCity,
+        selectedCategory,
+        setSelectedCategory,
+        category,
+        setCategory,
+        selectedColor,
+        setSelectedColor,
+        color,
+        setColor,
+        selectedGender,
+        setSelectedGender,
+        gender,
+        setGender,
+        geoZoomView,
+        setGeoZoomView,
         geoInitialView,
         setGeoInitialView,
         geoPortugal, setGeoPortugal,
+        geoLisbon, setGeoLisbon,
+        geoPorto, setGeoPorto,
+        geoFaro, setGeoFaro,
+        geoCoimbra, setGeoCoimbra,
+        geoBraga, setGeoBraga,
+        geoBraganca, setGeoBraganca,
+        geoLeiria, setGeoLeiria,
+        geoGuarda, setGeoGuarda,
+        geoBeja, setGeoBeja,
+        geoViana, setGeoViana,
+        geoVilaReal, setGeoVilaReal,
+        geoSetubal, setGeoSetubal,
         geoCityBounds, setGeoCityBounds,
+        storeProduct, setStoreProduct,
         dataProduct, setDataProduct,
         dataProductName, setDataProductName,
         dataSellerName, setDataSellerName,
         dataBroker, setDataBroker,
-        dataProductJson, setDataProductJson,
     } = useContext(GlobalContext);
+
+    const [isPending, startTransition] = useTransition();
 
     const getRandomId = () => {
         const id = uuidv4();
@@ -28,7 +71,7 @@ export default function DataGenerator() {
 
     const { data: CommodityData } = useDemoData({
         dataSet: "Commodity",
-        rowLength: 1000,
+        rowLength: 100,
     });
 
     function getRandomLatLng(city) {
@@ -44,24 +87,23 @@ export default function DataGenerator() {
     const products = useMemo(() => {
         if (
             !CommodityData?.rows ||
-            !dataProductJson?.length ||
+            !storeProduct?.length ||
             !city?.length
         ) return [];
 
         return CommodityData.rows.map((row) => {
             const location = city[Math.floor(Math.random() * city.length)].label;
             const { lat, lng } = getRandomLatLng(location);
-            const randomProduct = dataProductJson[Math.floor(Math.random() * dataProductJson.length)];
+            const randomProduct = storeProduct[Math.floor(Math.random() * storeProduct.length)];
 
             return {
                 id: row.id || getRandomId(),
-                product: randomProduct.name,
+                name: randomProduct.name,
                 seller: row.traderName,
                 broker: row.brokerName,
                 stock: row.quantity,
                 price: `€ ${Number(row.unitPrice).toFixed(2)}`,
                 tax: `${Number(row.feeRate).toFixed(2)} %`,
-                total: `€ ${Number(row.totalPrice).toFixed(2)}`,
                 location,
                 lat,
                 lng,
@@ -69,21 +111,19 @@ export default function DataGenerator() {
                 gender: randomProduct.gender,
                 category: randomProduct.type,
                 color: randomProduct.color,
-                filled: row.isFilled,
+                available: Math.random() >= 0.2,
                 contract: row.contractType,
                 email: row.traderEmail,
                 address: row.counterPartyAddress,
                 city: row.counterPartyCity,
                 rate: row.rateType,
-                country: row.counterPartyCountry,
+                country: row.counterPartyCountry.label,
                 taxcode: row.taxCode,
-                traded: row.tradeDate,
-                created: row.dateCreated,
-                updated: row.lastUpdated,
-                image: `/shop/img/product/${randomProduct.image}`,
+                date: row.tradeDate.toLocaleDateString("pt-PT"),
+                image: `/mongodb/img/product/${randomProduct.image}`,
             };
         });
-    }, [CommodityData, city, dataProductJson]);
+    }, [CommodityData, city, storeProduct]);
 
 
     const productListName = useMemo(() => {
@@ -151,18 +191,26 @@ export default function DataGenerator() {
         setDataSellerName(sellerList);
         setDataBroker(brokerList);
 
+        // Server Action run inside a transition
+        startTransition(() => {
+            saveJson(products, "data-product2.json")
+                .then(result => console.log("Saved JSON:", result))
+                .catch(err => console.error("Error saving JSON:", err));
+        });
+
     }, [products, productListName, sellerList, brokerList]);
 
+    //console.log("city:", city);
+    //console.log("geoCityBounds:", geoCityBounds);
+    //console.log("storeProduct:", storeProduct);
+    //console.log("CommodityData:", CommodityData);
 
-    console.log("city:", city);
-    console.log("geoCityBounds:", geoCityBounds);
-    console.log("dataProductJson:", dataProductJson);
-    console.log("CommodityData:", CommodityData);
+    //console.log("dataProduct:", products);
 
-    console.log("dataProduct:", dataProduct);
-    console.log("dataProductName:", dataProductName);
-    console.log("dataSellerName:", dataSellerName);
-    console.log("dataBroker:", dataBroker);
+    //console.log("dataProduct:", dataProduct);
+    //console.log("dataProductName:", dataProductName);
+    //console.log("dataSellerName:", dataSellerName);
+    //console.log("dataBroker:", dataBroker);
 
     return null; // This component does not render anything 
 };

@@ -82,7 +82,7 @@ const Content = () => {
             overflow: 'hidden',
           }}
         >
-          <ProductDataView />
+          
         </Paper>
       </Box>
 

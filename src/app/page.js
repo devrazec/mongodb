@@ -1,4 +1,4 @@
-import DataGenerator from '../utils/DataGenerator';
+import DataGenerator from '../utils/dataGenerator';
 
 import Header from '../components/Header';
 

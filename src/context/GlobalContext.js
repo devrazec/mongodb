@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useState, useEffect } from 'react';
+
 import geoPortugalJson from '../data/geo-portugal.json';
 import geoLisbonJson from '../data/geo-lisbon.json';
 import geoPortoJson from '../data/geo-porto.json';
@@ -14,8 +15,12 @@ import geoBejaJson from '../data/geo-beja.json';
 import geoVianaJson from '../data/geo-viana.json';
 import geoVilarealJson from '../data/geo-vilareal.json';
 import geoSetubalJson from '../data/geo-setubal.json';
+import storeProductJson from '../data/store-product.json';
 
-import productJson from '../data/product.json';
+import dataProductJson from '../data/data-product.json';
+import dataProductNameJson from '../data/data-product-name.json';
+import dataSellerNameJson from '../data/data-seller-name.json';
+import dataBrokerJson from '../data/data-broker.json';
 
 export const GlobalContext = createContext();
 
@@ -144,12 +149,12 @@ export function GlobalProvider({ children }) {
   const [geoViana, setGeoViana] = useState(geoVianaJson);
   const [geoVilaReal, setGeoVilaReal] = useState(geoVilarealJson);
   const [geoSetubal, setGeoSetubal] = useState(geoSetubalJson);
+  const [storeProduct, setStoreProduct] = useState(storeProductJson);
 
-  const [dataProduct, setDataProduct] = useState([]);
-  const [dataProductName, setDataProductName] = useState([]);
-  const [dataSellerName, setDataSellerName] = useState([]);
-  const [dataBroker, setDataBroker] = useState([]);
-  const [dataProductJson, setDataProductJson] = useState(productJson);
+  const [dataProduct, setDataProduct] = useState(dataProductJson);
+  const [dataProductName, setDataProductName] = useState(dataProductNameJson);
+  const [dataSellerName, setDataSellerName] = useState(dataSellerNameJson);
+  const [dataBroker, setDataBroker] = useState(dataBrokerJson);
 
   return (
     <GlobalContext.Provider
@@ -200,11 +205,11 @@ export function GlobalProvider({ children }) {
         geoVilaReal, setGeoVilaReal,
         geoSetubal, setGeoSetubal,
         geoCityBounds, setGeoCityBounds,
+        storeProduct, setStoreProduct,
         dataProduct, setDataProduct,
         dataProductName, setDataProductName,
         dataSellerName, setDataSellerName,
         dataBroker, setDataBroker,
-        dataProductJson, setDataProductJson,
       }}
     >
       {children}
