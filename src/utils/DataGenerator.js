@@ -161,7 +161,6 @@ export default function DataGenerator() {
 
     console.log("dataProduct:", dataProduct);
     console.log("dataProductName:", dataProductName);
-    console.log("dataProductName:", dataProductName);
     console.log("dataSellerName:", dataSellerName);
     console.log("dataBroker:", dataBroker);
 

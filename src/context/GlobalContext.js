@@ -1,9 +1,21 @@
 'use client';
 
 import { createContext, useState, useEffect } from 'react';
-import portugalJson from '../data/portugal.json';
+import geoPortugalJson from '../data/geo-portugal.json';
+import geoLisbonJson from '../data/geo-lisbon.json';
+import geoPortoJson from '../data/geo-porto.json';
+import geoFaroJson from '../data/geo-faro.json';
+import geoCoimbraJson from '../data/geo-coimbra.json';
+import geoBragaJson from '../data/geo-braga.json';
+import geoBragancaJson from '../data/geo-braganca.json';
+import geoLeiriaJson from '../data/geo-leiria.json';
+import geoGuardaJson from '../data/geo-guarda.json';
+import geoBejaJson from '../data/geo-beja.json';
+import geoVianaJson from '../data/geo-viana.json';
+import geoVilarealJson from '../data/geo-vilareal.json';
+import geoSetubalJson from '../data/geo-setubal.json';
+
 import productJson from '../data/product.json';
-import L from 'leaflet';
 
 export const GlobalContext = createContext();
 
@@ -20,14 +32,19 @@ export function GlobalProvider({ children }) {
   ]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [city, setCity] = useState([
-    { label: 'Lisbon', value: 'Lisbon', colorCode: '#0074D9' }, // blue
-    { label: 'Porto', value: 'Porto', colorCode: '#FF4136' }, // red
-    { label: 'Faro', value: 'Faro', colorCode: '#2ECC40' }, // green
-    { label: 'Coimbra', value: 'Coimbra', colorCode: '#FF851B' }, // orange
-    { label: 'Braga', value: 'Braga', colorCode: '#B10DC9' }, // purple
-    { label: 'Bragança', value: 'Bragança', colorCode: '#39CCCC' }, // teal
-    { label: 'Leiria', value: 'Leiria', colorCode: '#F012BE' }, // magenta
-    { label: 'Guarda', value: 'Guarda', colorCode: '#85144b' }, // dark red
+    { label: 'Lisbon', value: 'Lisbon', colorCode: '#1A73E8' },
+    { label: 'Porto', value: 'Porto', colorCode: '#E91E63' },
+    { label: 'Faro', value: 'Faro', colorCode: '#F57C00' },
+    { label: 'Coimbra', value: 'Coimbra', colorCode: '#43A047' },
+    { label: 'Braga', value: 'Braga', colorCode: '#8E24AA' },
+    { label: 'Bragança', value: 'Bragança', colorCode: '#39CCCC' },
+    { label: 'Leiria', value: 'Leiria', colorCode: '#0097A7' },
+    { label: 'Guarda', value: 'Guarda', colorCode: '#C62828' },
+    { label: 'Beja', value: 'Beja', colorCode: '#6D4C41' },
+    { label: 'Viana', value: 'Viana', colorCode: '#0D47A1' },
+    { label: 'VilaReal', value: 'VilaReal', colorCode: '#7CB342' },
+    { label: 'Setubal', value: 'Setubal', colorCode: '#673AB7' },
+
   ]);
   const [selectedCity, setSelectedCity] = useState([]);
 
@@ -96,48 +113,8 @@ export function GlobalProvider({ children }) {
   ]);
   const [selectedGender, setSelectedGender] = useState([]);
 
-  const [geoLocation, setGeoLocation] = useState({
-    All: L.latLngBounds([
-      [36.9, -9.5], // southwestern Portugal
-      [42.1, -6.2], // northeastern Portugal
-    ]),
-    Lisbon: L.latLngBounds([
-      [38.69, -9.25],
-      [38.82, -9.05],
-    ]),
-    Porto: L.latLngBounds([
-      [41.11, -8.74],
-      [41.19, -8.53],
-    ]),
-    Faro: L.latLngBounds([
-      [37.0, -8.1],
-      [37.2, -7.8],
-    ]),
-    Coimbra: L.latLngBounds([
-      [40.18, -8.48],
-      [40.23, -8.4],
-    ]),
-    Braga: L.latLngBounds([
-      [41.53, -8.47],
-      [41.57, -8.42],
-    ]),
-    Bragança: L.latLngBounds([
-      [41.79, -6.75],
-      [41.83, -6.7],
-    ]),
-    Leiria: L.latLngBounds([
-      [39.74, -8.87],
-      [39.76, -8.8],
-    ]),
-    Guarda: L.latLngBounds([
-      [40.53, -7.48],
-      [40.56, -7.42],
-    ]),
-  });
-
   const [geoZoomView, setGeoZoomView] = useState(7);
   const [geoInitialView, setGeoInitialView] = useState([39.3999, -8.2245]);
-  const [geoPortugal, setGeoPortugal] = useState(portugalJson);
 
   const [geoCityBounds, setGeoCityBounds] = useState({
     Lisbon: { latMin: 38.69, latMax: 38.82, lngMin: -9.25, lngMax: -9.05 },
@@ -148,15 +125,31 @@ export function GlobalProvider({ children }) {
     Bragança: { latMin: 41.79, latMax: 41.83, lngMin: -6.75, lngMax: -6.7 },
     Leiria: { latMin: 39.74, latMax: 39.76, lngMin: -8.87, lngMax: -8.8 },
     Guarda: { latMin: 40.53, latMax: 40.56, lngMin: -7.48, lngMax: -7.42 },
+    Beja: { latMin: 37.93, latMax: 38.02, lngMin: -7.93, lngMax: -7.82 },
+    Viana: { latMin: 41.67, latMax: 41.72, lngMin: -8.86, lngMax: -8.77 },
+    VilaReal: { latMin: 41.27, latMax: 41.33, lngMin: -7.77, lngMax: -7.65 },
+    Setubal: { latMin: 38.51, latMax: 38.56, lngMin: -8.92, lngMax: -8.84 },
   });
+
+  const [geoPortugal, setGeoPortugal] = useState(geoPortugalJson);
+  const [geoLisbon, setGeoLisbon] = useState(geoLisbonJson);
+  const [geoPorto, setGeoPorto] = useState(geoPortoJson);
+  const [geoFaro, setGeoFaro] = useState(geoFaroJson);
+  const [geoCoimbra, setGeoCoimbra] = useState(geoCoimbraJson);
+  const [geoBraga, setGeoBraga] = useState(geoBragaJson);
+  const [geoBraganca, setGeoBraganca] = useState(geoBragancaJson);
+  const [geoLeiria, setGeoLeiria] = useState(geoLeiriaJson);
+  const [geoGuarda, setGeoGuarda] = useState(geoGuardaJson);
+  const [geoBeja, setGeoBeja] = useState(geoBejaJson);
+  const [geoViana, setGeoViana] = useState(geoVianaJson);
+  const [geoVilaReal, setGeoVilaReal] = useState(geoVilarealJson);
+  const [geoSetubal, setGeoSetubal] = useState(geoSetubalJson);
 
   const [dataProduct, setDataProduct] = useState([]);
   const [dataProductName, setDataProductName] = useState([]);
   const [dataSellerName, setDataSellerName] = useState([]);
   const [dataBroker, setDataBroker] = useState([]);
   const [dataProductJson, setDataProductJson] = useState(productJson);
-
-
 
   return (
     <GlobalContext.Provider
@@ -189,13 +182,23 @@ export function GlobalProvider({ children }) {
         setSelectedGender,
         gender,
         setGender,
-        geoLocation,
-        setGeoLocation,
         geoZoomView,
         setGeoZoomView,
         geoInitialView,
         setGeoInitialView,
         geoPortugal, setGeoPortugal,
+        geoLisbon, setGeoLisbon,
+        geoPorto, setGeoPorto,
+        geoFaro, setGeoFaro,
+        geoCoimbra, setGeoCoimbra,
+        geoBraga, setGeoBraga,
+        geoBraganca, setGeoBraganca,
+        geoLeiria, setGeoLeiria,
+        geoGuarda, setGeoGuarda,
+        geoBeja, setGeoBeja,
+        geoViana, setGeoViana,
+        geoVilaReal, setGeoVilaReal,
+        geoSetubal, setGeoSetubal,
         geoCityBounds, setGeoCityBounds,
         dataProduct, setDataProduct,
         dataProductName, setDataProductName,

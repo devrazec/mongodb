@@ -7,7 +7,9 @@ import 'leaflet-draw/dist/leaflet.draw.css';
 
 import ResetView from './ResetView';
 import ShowMyLocation from './ShowMyLocation';
-import MaskLayer from './MaskLayer';
+import PortugalLayer from './PortugalLayer';
+import LocationLayer from './LocationLayer';
+
 
 import { GlobalContext } from '../context/GlobalContext';
 
@@ -66,7 +68,8 @@ const LeafletMap = () => {
 
       <ResetView />
       <ShowMyLocation />
-      <MaskLayer />
+      <PortugalLayer />
+      <LocationLayer />
     </MapContainer>
   );
 };
