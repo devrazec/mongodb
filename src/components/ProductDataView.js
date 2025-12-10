@@ -10,263 +10,264 @@ import { classNames } from 'primereact/utils';
 import { Image } from 'primereact/image';
 
 const ProductDataView = () => {
-    const {
-        darkMode,
-        setDarkMode,
-        mobileDevice,
-        setMobileDevice,
-        mobilePanel,
-        setMobilePanel,
-        selectedLanguage,
-        setSelectedLanguage,
-        language,
-        setLanguage,
-        selectedCity,
-        setSelectedCity,
-        city,
-        setCity,
-        selectedCategory,
-        setSelectedCategory,
-        category,
-        setCategory,
-        selectedColor,
-        setSelectedColor,
-        color,
-        setColor,
-        selectedGender,
-        setSelectedGender,
-        gender,
-        setGender,
-        geoZoomView,
-        setGeoZoomView,
-        geoInitialView,
-        setGeoInitialView,
-        geoPortugal,
-        setGeoPortugal,
-        geoLisbon,
-        setGeoLisbon,
-        geoPorto,
-        setGeoPorto,
-        geoFaro,
-        setGeoFaro,
-        geoCoimbra,
-        setGeoCoimbra,
-        geoBraga,
-        setGeoBraga,
-        geoBraganca,
-        setGeoBraganca,
-        geoLeiria,
-        setGeoLeiria,
-        geoGuarda,
-        setGeoGuarda,
-        geoBeja,
-        setGeoBeja,
-        geoViana,
-        setGeoViana,
-        geoVilaReal,
-        setGeoVilaReal,
-        geoSetubal,
-        setGeoSetubal,
-        geoCityBounds,
-        setGeoCityBounds,
-        storeProduct,
-        setStoreProduct,
-        dataProduct,
-        setDataProduct,
-        dataProductName,
-        setDataProductName,
-        dataSellerName,
-        setDataSellerName,
-        dataBroker,
-        setDataBroker,
-        sortField,
-        setSortField,
-        sortOrder,
-        setSortOrder,
-        productLayout,
-        setProductLayout,
-        selectedProductId,
-        setSelectedProductId,
-        selectedProduct,
-        setSelectedProduct,
-        hoverProductId,
-        setHoverProductId,
-        selectedProductName,
-        setSelectedProductName,
-        filteredProduct, setFilteredProduct,
-        mapPanel, setMapPanel,
-    } = useContext(GlobalContext);
+  const {
+    darkMode,
+    setDarkMode,
+    mobileDevice,
+    setMobileDevice,
+    mobilePanel,
+    setMobilePanel,
+    selectedLanguage,
+    setSelectedLanguage,
+    language,
+    setLanguage,
+    selectedCity,
+    setSelectedCity,
+    city,
+    setCity,
+    selectedCategory,
+    setSelectedCategory,
+    category,
+    setCategory,
+    selectedColor,
+    setSelectedColor,
+    color,
+    setColor,
+    selectedGender,
+    setSelectedGender,
+    gender,
+    setGender,
+    geoZoomView,
+    setGeoZoomView,
+    geoInitialView,
+    setGeoInitialView,
+    geoPortugal,
+    setGeoPortugal,
+    geoLisbon,
+    setGeoLisbon,
+    geoPorto,
+    setGeoPorto,
+    geoFaro,
+    setGeoFaro,
+    geoCoimbra,
+    setGeoCoimbra,
+    geoBraga,
+    setGeoBraga,
+    geoBraganca,
+    setGeoBraganca,
+    geoLeiria,
+    setGeoLeiria,
+    geoGuarda,
+    setGeoGuarda,
+    geoBeja,
+    setGeoBeja,
+    geoViana,
+    setGeoViana,
+    geoVilaReal,
+    setGeoVilaReal,
+    geoSetubal,
+    setGeoSetubal,
+    geoCityBounds,
+    setGeoCityBounds,
+    storeProduct,
+    setStoreProduct,
+    dataProduct,
+    setDataProduct,
+    dataProductName,
+    setDataProductName,
+    dataSellerName,
+    setDataSellerName,
+    dataBroker,
+    setDataBroker,
+    sortField,
+    setSortField,
+    sortOrder,
+    setSortOrder,
+    productLayout,
+    setProductLayout,
+    selectedProductId,
+    setSelectedProductId,
+    selectedProduct,
+    setSelectedProduct,
+    hoverProductId,
+    setHoverProductId,
+    selectedProductName,
+    setSelectedProductName,
+    filteredProduct,
+    setFilteredProduct,
+    mapPanel,
+    setMapPanel,
+  } = useContext(GlobalContext);
 
-    const gridClass = mapPanel
-        ? 'col-12 sm:col-6 md:col-4 lg:col-3 xl:col-4' // Map visible: 3–4 columns max
-        : 'col-12 sm:col-6 md:col-4 lg:col-3 xl:col-2';
+  const gridClass = mapPanel
+    ? 'col-12 sm:col-6 md:col-4 lg:col-3 xl:col-4' // Map visible: 3–4 columns max
+    : 'col-12 sm:col-6 md:col-4 lg:col-3 xl:col-2';
 
-    const listClass = mapPanel
-        ? 'flex flex-column xl:flex-row xl:align-items-start m-2 p-4 gap-4 shadow-2 border-round-xl surface-card card-item'
-        : 'flex flex-column sm:flex-row flex-wrap m-2 p-4 gap-4 shadow-2 border-round-xl surface-card card-item';
+  const listClass = mapPanel
+    ? 'flex flex-column xl:flex-row xl:align-items-start m-2 p-4 gap-4 shadow-2 border-round-xl surface-card card-item'
+    : 'flex flex-column sm:flex-row flex-wrap m-2 p-4 gap-4 shadow-2 border-round-xl surface-card card-item';
 
-    const itemStyle = mapPanel
-        ? {}
-        : { width: 'calc(50% - 1rem)' };
+  const itemStyle = mapPanel ? {} : { width: 'calc(50% - 1rem)' };
 
-    const getSeverity = product => {
-        switch (product.status) {
-            case 'Open':
-                return 'success';
-            case 'Filled':
-                return 'info';
-            case 'Rejected':
-                return 'danger';
-            case 'Partially Filled':
-                return 'warning';
-            default:
-                return null;
-        }
-    };
+  const getSeverity = product => {
+    switch (product.status) {
+      case 'Open':
+        return 'success';
+      case 'Filled':
+        return 'info';
+      case 'Rejected':
+        return 'danger';
+      case 'Partially Filled':
+        return 'warning';
+      default:
+        return null;
+    }
+  };
 
-    const listItem = product => {
-
-        return (
-            <div
-                key={product.id}
-                className={`${listClass} 
+  const listItem = product => {
+    return (
+      <div
+        key={product.id}
+        className={`${listClass} 
     ${selectedProduct?.id === product.id ? 'card-item-selected' : ''}
     ${hoverProductId === product.id ? 'card-item-hover' : ''}`}
-                style={itemStyle}
-                onMouseEnter={() => setHoverProductId(product.id)}
-                onMouseLeave={() => setHoverProductId(null)}
-                onClick={() => setSelectedProduct(product)}
-            >
-                <Image
-                    className="w-9 sm:w-16rem xl:w-10rem shadow-2 border-round"
-                    src={product.image}
-                    alt={product.name}
-                    width="60%"
-                    preview={true}
-                />
+        style={itemStyle}
+        onMouseEnter={() => setHoverProductId(product.id)}
+        onMouseLeave={() => setHoverProductId(null)}
+        onClick={() => setSelectedProduct(product)}
+      >
+        <Image
+          className="w-9 sm:w-16rem xl:w-10rem shadow-2 border-round"
+          src={product.image}
+          alt={product.name}
+          width="60%"
+          preview={true}
+        />
 
-                <div className="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
-                    <div className="flex flex-column align-items-center sm:align-items-start gap-3">
-                        <div className="text-2xl font-bold text-gray-900">{product.name}</div>
-
-                        <div className="flex align-items-center gap-3">
-                            <Tag value={product.gender} severity={getSeverity(product)} />
-                            <span className="flex align-items-center gap-2">
-                                <i className="pi pi-tag"></i>
-                                <span className="font-semibold">{product.category}</span>
-                            </span>
-                        </div>
-
-                        <div className="flex align-items-start justify-content-between w-full">
-                            <span className="font-semibold">Location: {product.location}</span>
-                        </div>
-                    </div>
-
-                    <div className="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
-                        <span className="text-2xl font-semibold">{product.price}</span>
-                        <Button icon="pi pi-shopping-cart" className="p-button-rounded" />
-                    </div>
-                </div>
+        <div className="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+          <div className="flex flex-column align-items-center sm:align-items-start gap-3">
+            <div className="text-2xl font-bold text-gray-900">
+              {product.name}
             </div>
 
-        );
-    };
+            <div className="flex align-items-center gap-3">
+              <Tag value={product.gender} severity={getSeverity(product)} />
+              <span className="flex align-items-center gap-2">
+                <i className="pi pi-tag"></i>
+                <span className="font-semibold">{product.category}</span>
+              </span>
+            </div>
 
-    const gridItem = product => {
+            <div className="flex align-items-start justify-content-between w-full">
+              <span className="font-semibold">
+                Location: {product.location}
+              </span>
+            </div>
+          </div>
 
-        return (
-            <div className={`${gridClass} p-2`} key={product.id}>
-                <div
-                    className={`p-3 shadow-2 surface-card border-round-xl card-item
+          <div className="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
+            <span className="text-2xl font-semibold">€ {product.price}</span>
+            <Button icon="pi pi-shopping-cart" className="p-button-rounded" />
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const gridItem = product => {
+    return (
+      <div className={`${gridClass} p-2`} key={product.id}>
+        <div
+          className={`p-3 shadow-2 surface-card border-round-xl card-item
       ${selectedProduct?.id === product.id ? 'card-item-selected' : ''}
       ${hoverProductId === product.id ? 'card-item-selected' : ''}`}
-                    onMouseEnter={() => setHoverProductId(product.id)}
-                    onMouseLeave={() => setHoverProductId(null)}
-                    onClick={() => setSelectedProduct(product)}
-                >
-                    <div className="flex flex-wrap align-items-center justify-content-between gap-2">
-                        <div className="flex align-items-center gap-2">
-                            <i className="pi pi-tag"></i>
-                            <span className="font-semibold">{product.category}</span>
-                        </div>
-                        <Tag value={product.gender} severity={getSeverity(product)}></Tag>
-                    </div>
-
-                    <div className="flex flex-column align-items-center gap-3 py-5">
-                        <Image
-                            className="w-9 shadow-2 border-round"
-                            src={product.image}
-                            alt={product.name}
-                            width="100%"
-                            preview={true}
-                        />
-                        <div
-                            style={{
-                                display: '-webkit-box',
-                                WebkitLineClamp: 2,
-                                WebkitBoxOrient: 'vertical',
-                                overflow: 'hidden',
-                                textOverflow: 'ellipsis',
-                                fontSize: '1rem',
-                                lineHeight: '1.2rem',
-                                height: '2.4rem',
-                                fontWeight: 600,
-                            }}
-                        >
-                            {product.name}
-                        </div>
-
-                        <div className="flex align-items-start justify-content-between w-full">
-                            <span className="font-semibold">
-                                Location: {product.location}
-                            </span>
-                        </div>
-                    </div>
-
-                    <div className="flex align-items-center justify-content-between">
-                        <span className="font-semibold">{product.price}</span>
-                        <Button
-                            icon="pi pi-shopping-cart"
-                            className="p-button-rounded"
-                        ></Button>
-                    </div>
-                </div>
+          onMouseEnter={() => setHoverProductId(product.id)}
+          onMouseLeave={() => setHoverProductId(null)}
+          onClick={() => setSelectedProduct(product)}
+        >
+          <div className="flex flex-wrap align-items-center justify-content-between gap-2">
+            <div className="flex align-items-center gap-2">
+              <i className="pi pi-tag"></i>
+              <span className="font-semibold">{product.category}</span>
             </div>
-        );
-    };
+            <Tag value={product.gender} severity={getSeverity(product)}></Tag>
+          </div>
 
-    const itemTemplate = (product, layout, index) => {
-        if (!product) return null;
-
-        switch (layout) {
-            case 'list':
-                return listItem(product, index);
-            case 'grid':
-                return gridItem(product);
-            default:
-                return null;
-        }
-    };
-
-    const listTemplate = (products, layout) => {
-        return (
-            <div className="grid grid-nogutter">
-                {products.map((product, index) => itemTemplate(product, layout, index))}
-            </div>
-        );
-    };
-
-    return (
-        <div className="card" style={{ height: '100%', overflowY: 'auto' }}>
-            <DataView
-                value={filteredProduct}
-                listTemplate={listTemplate}
-                layout={productLayout}
-                paginator
-                rows={12}
+          <div className="flex flex-column align-items-center gap-3 py-5">
+            <Image
+              className="w-9 shadow-2 border-round"
+              src={product.image}
+              alt={product.name}
+              width="100%"
+              preview={true}
             />
+            <div
+              style={{
+                display: '-webkit-box',
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                fontSize: '1rem',
+                lineHeight: '1.2rem',
+                height: '2.4rem',
+                fontWeight: 600,
+              }}
+            >
+              {product.name}
+            </div>
+
+            <div className="flex align-items-start justify-content-between w-full">
+              <span className="font-semibold">
+                Location: {product.location}
+              </span>
+            </div>
+          </div>
+
+          <div className="flex align-items-center justify-content-between">
+            <span className="font-semibold">€ {product.price}</span>
+            <Button
+              icon="pi pi-shopping-cart"
+              className="p-button-rounded"
+            ></Button>
+          </div>
         </div>
+      </div>
     );
+  };
+
+  const itemTemplate = (product, layout, index) => {
+    if (!product) return null;
+
+    switch (layout) {
+      case 'list':
+        return listItem(product, index);
+      case 'grid':
+        return gridItem(product);
+      default:
+        return null;
+    }
+  };
+
+  const listTemplate = (products, layout) => {
+    return (
+      <div className="grid grid-nogutter">
+        {products.map((product, index) => itemTemplate(product, layout, index))}
+      </div>
+    );
+  };
+
+  return (
+    <div className="card" style={{ height: '100%', overflowY: 'auto' }}>
+      <DataView
+        value={filteredProduct}
+        listTemplate={listTemplate}
+        layout={productLayout}
+        paginator
+        rows={12}
+      />
+    </div>
+  );
 };
 
 export default ProductDataView;

@@ -302,8 +302,10 @@ export function GlobalProvider({ children }) {
         setHoverProductId,
         selectedProductName,
         setSelectedProductName,
-        filteredProduct, setFilteredProduct,
-        mapPanel, setMapPanel,
+        filteredProduct,
+        setFilteredProduct,
+        mapPanel,
+        setMapPanel,
       }}
     >
       {children}

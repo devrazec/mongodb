@@ -5,8 +5,12 @@ import { Box, Paper, Button } from '@mui/material';
 import { GlobalContext } from '../context/GlobalContext';
 import dynamic from 'next/dynamic';
 
-const ProductDataView = dynamic(() => import('../components/ProductDataView'), { ssr: false });
-const LeafletMap = dynamic(() => import('../components/LeafletMap'), { ssr: false });
+const ProductDataView = dynamic(() => import('../components/ProductDataView'), {
+  ssr: false,
+});
+const LeafletMap = dynamic(() => import('../components/LeafletMap'), {
+  ssr: false,
+});
 
 const Content = () => {
   const {
@@ -42,7 +46,8 @@ const Content = () => {
     setGender,
     geoLocation,
     setGeoLocation,
-    mapPanel, setMapPanel,
+    mapPanel,
+    setMapPanel,
   } = useContext(GlobalContext);
 
   return (

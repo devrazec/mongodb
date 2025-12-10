@@ -12,7 +12,8 @@ const SearchField = () => {
     setSelectedProductName,
     setSelectedProduct,
     setHoverProductId,
-    filteredProduct, setFilteredProduct,
+    filteredProduct,
+    setFilteredProduct,
   } = useContext(GlobalContext);
 
   const [filteredNames, setFilteredNames] = useState([]);

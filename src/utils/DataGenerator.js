@@ -54,7 +54,7 @@ export default function DataGenerator() {
         seller: row.traderName,
         broker: row.brokerName,
         stock: row.quantity,
-        price: `€ ${Number(row.unitPrice).toFixed(2)}`,
+        price: `${Number(row.unitPrice).toFixed(2)}`,
         tax: `${Number(row.feeRate).toFixed(2)} %`,
         location,
         lat,
@@ -122,7 +122,7 @@ export default function DataGenerator() {
     return unique;
   }, [products]);
 
-  /*   async function saveData(data, fileName) {
+  async function saveData(data, fileName) {
     try {
       const response = await fetch('/mongodb/api/saveData', {
         method: 'POST',
@@ -135,7 +135,7 @@ export default function DataGenerator() {
     } catch (err) {
       console.error('SAVE FAILED:', err);
     }
-  } */
+  }
 
   useEffect(() => {
     const ready =
@@ -157,7 +157,7 @@ export default function DataGenerator() {
     setDataSellerName(sellerList);
     setDataBroker(brokerList);
 
-    //saveData(products, "data-product.json");
+    saveData(products, "data-product.json");
   }, [
     CommodityData,
     city,

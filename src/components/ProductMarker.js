@@ -34,7 +34,8 @@ const ProductMarker = () => {
     setSelectedProduct,
     hoverProductId,
     setHoverProductId,
-    filteredProduct, setFilteredProduct,
+    filteredProduct,
+    setFilteredProduct,
   } = useContext(GlobalContext);
 
   return (
@@ -85,7 +86,7 @@ const ProductMarker = () => {
                 </div>
               </div>
               <div className="flex align-items-center justify-content-between">
-                <span className="font-semibold">{item.price}</span>
+                <span className="font-semibold">€ {item.price}</span>
                 <Button
                   icon="pi pi-shopping-cart"
                   className="p-button-rounded"
