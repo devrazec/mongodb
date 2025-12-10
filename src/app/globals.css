@@ -40,3 +40,23 @@ body {
 @import '@fontsource/roboto/400.css';
 @import '@fontsource/roboto/500.css';
 @import '@fontsource/roboto/700.css';
+
+  .card-item {
+    transition: 0.25s ease;
+    border-radius: 1.2rem !important; /* rounded-xl / PrimeFlex style */
+    cursor: pointer;
+  }
+
+  /* Hover highlight */
+  .card-item:hover {
+    border: 2px solid #16a34a !important; /* Green border */
+    box-shadow: 0 0 12px rgba(22, 163, 74, 0.55);
+  }
+
+  /* Selected highlight */
+  .card-item-selected {
+    border: 2px solid #16a34a !important;
+    box-shadow: 
+        0 0 18px rgba(22, 163, 74, 0.75),
+        0 0 30px rgba(22, 163, 74, 0.45);
+  }

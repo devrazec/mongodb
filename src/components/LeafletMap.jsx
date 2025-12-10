@@ -9,6 +9,7 @@ import ResetView from './ResetView';
 import ShowMyLocation from './ShowMyLocation';
 import PortugalLayer from './PortugalLayer';
 import LocationLayer from './LocationLayer';
+import ProductMarker from './ProductMarker';
 
 import { GlobalContext } from '../context/GlobalContext';
 
@@ -50,6 +51,9 @@ const LeafletMap = () => {
     setGeoZoomView,
     geoInitialView,
     setGeoInitialView,
+            selectedProductId,
+        setSelectedProductId,
+        hoverProductId, setHoverProductId,
   } = useContext(GlobalContext);
 
   return (
@@ -69,6 +73,7 @@ const LeafletMap = () => {
       <ShowMyLocation />
       <PortugalLayer />
       <LocationLayer />
+      <ProductMarker />
     </MapContainer>
   );
 };

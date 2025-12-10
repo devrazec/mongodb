@@ -35,7 +35,6 @@ export function GlobalProvider({ children }) {
     { name: 'Portuguese', code: 'PT', icon: 'fi fi-pt' },
     { name: 'Spanish', code: 'ES', icon: 'fi fi-es' },
   ]);
-  const [selectedProduct, setSelectedProduct] = useState(null);
   const [city, setCity] = useState([
     { label: 'Lisbon', value: 'Lisbon', colorCode: '#1A73E8' },
     { label: 'Porto', value: 'Porto', colorCode: '#E91E63' },
@@ -160,6 +159,10 @@ export function GlobalProvider({ children }) {
 
   const [productLayout, setProductLayout] = useState('grid');
 
+  const [selectedProduct, setSelectedProduct] = useState([]);
+  const [selectedProductId, setSelectedProductId] = useState(null);
+  const [hoverProductId, setHoverProductId] = useState(null);
+
   return (
     <GlobalContext.Provider
       value={{
@@ -173,8 +176,7 @@ export function GlobalProvider({ children }) {
         setSelectedLanguage,
         language,
         setLanguage,
-        selectedProduct,
-        setSelectedProduct,
+
         selectedCity,
         setSelectedCity,
         city,
@@ -239,6 +241,11 @@ export function GlobalProvider({ children }) {
         setSortOrder,
         productLayout,
         setProductLayout,
+        selectedProductId,
+        setSelectedProductId,
+        selectedProduct,
+        setSelectedProduct,
+        hoverProductId, setHoverProductId,
       }}
     >
       {children}
