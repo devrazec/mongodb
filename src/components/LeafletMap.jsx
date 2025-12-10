@@ -51,9 +51,10 @@ const LeafletMap = () => {
     setGeoZoomView,
     geoInitialView,
     setGeoInitialView,
-            selectedProductId,
-        setSelectedProductId,
-        hoverProductId, setHoverProductId,
+    selectedProductId,
+    setSelectedProductId,
+    hoverProductId,
+    setHoverProductId,
   } = useContext(GlobalContext);
 
   return (

@@ -245,7 +245,8 @@ export function GlobalProvider({ children }) {
         setSelectedProductId,
         selectedProduct,
         setSelectedProduct,
-        hoverProductId, setHoverProductId,
+        hoverProductId,
+        setHoverProductId,
       }}
     >
       {children}

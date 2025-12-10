@@ -9,9 +9,10 @@ import { Button } from 'primereact/button';
 import { Image } from 'primereact/image';
 import { GlobalContext } from '../context/GlobalContext';
 
-const createPriceIcon = (item, isHovered) => L.divIcon({
-  className: 'price-marker',
-  html: `<div style="
+const createPriceIcon = (item, isHovered) =>
+  L.divIcon({
+    className: 'price-marker',
+    html: `<div style="
      background:${isHovered ? '#000' : '#fff'};
      color:${isHovered ? '#fff' : '#000'};
      border-radius:12px;
@@ -20,9 +21,9 @@ const createPriceIcon = (item, isHovered) => L.divIcon({
      text-align:center;
      border:1px solid rgba(0,0,0,0.1);
   ">${item.price}</div>`,
-  iconSize: [50, 30],
-  iconAnchor: [25, 15],
-});
+    iconSize: [50, 30],
+    iconAnchor: [25, 15],
+  });
 
 const ProductMarker = () => {
   const {
@@ -49,8 +50,10 @@ const ProductMarker = () => {
           }}
         >
           <Popup maxWidth={200} maxHeight={350}>
-            <Card className="p-card product-popup-card" style={{ padding: 0, border: 'none' }}>
-
+            <Card
+              className="p-card product-popup-card"
+              style={{ padding: 0, border: 'none' }}
+            >
               <div className="flex flex-column align-items-center gap-2">
                 <Image
                   className="w-9 shadow-2 border-round"
@@ -62,20 +65,22 @@ const ProductMarker = () => {
                 <div
                   style={{
                     display: '-webkit-box',
-                    WebkitLineClamp: 2,       // Limit to 2 lines
+                    WebkitLineClamp: 2, // Limit to 2 lines
                     WebkitBoxOrient: 'vertical',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     fontSize: '1rem',
                     lineHeight: '1.2rem',
-                    height: '2.4rem',         // 2 lines × line-height
+                    height: '2.4rem', // 2 lines × line-height
                     fontWeight: 300,
                   }}
                 >
                   {item.name}
                 </div>
                 <div className="flex align-items-start justify-content-between w-full">
-                  <span className="font-semibold">Location: {item.location}</span>
+                  <span className="font-semibold">
+                    Location: {item.location}
+                  </span>
                 </div>
               </div>
               <div className="flex align-items-center justify-content-between">
@@ -86,7 +91,6 @@ const ProductMarker = () => {
                   disabled={item.status === 'Rejected'}
                 ></Button>
               </div>
-
             </Card>
           </Popup>
         </Marker>
