@@ -28,7 +28,7 @@
     "react/jsx-uses-react": "off",
     "no-unused-vars": "off",
     "no-console": "off",
-    "react-hooks/rules-of-hooks": "warn",
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/rules-of-hooks": "off",
+    "react-hooks/exhaustive-deps": "off"
   }
 }

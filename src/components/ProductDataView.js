@@ -7,6 +7,7 @@ import { DataView, DataViewLayoutOptions } from 'primereact/dataview';
 import { Rating } from 'primereact/rating';
 import { Tag } from 'primereact/tag';
 import { classNames } from 'primereact/utils';
+import { Image } from 'primereact/image';
 
 const ProductDataView = () => {
   const {
@@ -148,10 +149,11 @@ const ProductDataView = () => {
             { 'border-top-1 surface-border': index !== 0 }
           )}
         >
-          <img
+          <Image
             className="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round"
             src={product.image}
             alt={product.name}
+            width="100%"
           />
           <div className="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
             <div className="flex flex-column align-items-center sm:align-items-start gap-3">
@@ -194,10 +196,11 @@ const ProductDataView = () => {
             <Tag value={product.gender} severity={getSeverity(product)}></Tag>
           </div>
           <div className="flex flex-column align-items-center gap-3 py-5">
-            <img
+            <Image
               className="w-9 shadow-2 border-round"
               src={product.image}
               alt={product.name}
+              width="100%"
             />
             <div className="text-2xl font-bold">{product.name}</div>
             <Rating value={product.stock} readOnly cancel={false}></Rating>

@@ -6,6 +6,7 @@ import MobilePanel from '../components/MobilePanel';
 import LanguageSelector from '../components/LanguageSelector';
 import SearchField from '../components/SearchField';
 import FilterBar from '../components/FilterBar';
+import { Image } from 'primereact/image';
 const Header = () => {
   const {
     darkMode,
@@ -34,12 +35,12 @@ const Header = () => {
             onClick={() => setMobilePanel(!mobilePanel)}
           ></i>
 
-          <img
+          <Image
             src={
               mobileDevice ? '/mongodb/img/logo4.png' : '/mongodb/img/logo3.png'
             }
             alt="logo"
-            style={{ height: '40px' }}
+            height="40px"
           />
         </div>
 

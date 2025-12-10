@@ -4,6 +4,7 @@ import React, { useContext, useEffect } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
 import { Button } from 'primereact/button';
 import { Sidebar } from 'primereact/sidebar';
+import { Image } from 'primereact/image';
 
 const MobilePanel = () => {
   const {
@@ -42,11 +43,7 @@ const MobilePanel = () => {
       >
         {/* Logo */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <img
-            src="/mongodb/img/logo3.png"
-            alt="Logo"
-            style={{ paddingLeft: 8, height: 30 }}
-          />
+          <Image src="/mongodb/img/logo3.png" alt="Logo" height="40px" />
         </div>
 
         {/* Close Button */}

@@ -19,7 +19,7 @@ const SortBy = () => {
   };
 
   return (
-    <div className="card flex flex-wrap justify-content-center gap-3">
+    <div className="card flex justify-content-center gap-3">
       <Button
         type="button"
         label="Name"
