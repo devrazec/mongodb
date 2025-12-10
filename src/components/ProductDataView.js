@@ -196,7 +196,6 @@ const ProductDataView = () => {
                 paginator
                 rows={6}
             />
-
         </div>
     );
 };
