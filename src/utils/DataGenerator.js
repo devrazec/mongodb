@@ -14,6 +14,7 @@ export default function DataGenerator() {
     setDataProductName,
     setDataSellerName,
     setDataBroker,
+    mongodbImage, setMongodbImage,
   } = useContext(GlobalContext);
 
   const [saved, setSaved] = useState(false);
@@ -25,7 +26,7 @@ export default function DataGenerator() {
 
   const { data: CommodityData } = useDemoData({
     dataSet: 'Commodity',
-    rowLength: 100,
+    rowLength: 10000,
   });
 
   function getRandomLatLng(city) {
@@ -36,6 +37,11 @@ export default function DataGenerator() {
     const lng = Math.random() * (bounds.lngMax - bounds.lngMin) + bounds.lngMin;
 
     return { lat, lng };
+  }
+
+  function getMongodbImageId(filename) {
+    if (filename === ".DS_Store") return null;
+    return mongodbImage[filename] || null;
   }
 
   const products = useMemo(() => {
@@ -72,6 +78,7 @@ export default function DataGenerator() {
         country: row.counterPartyCountry.label,
         taxcode: row.taxCode,
         date: row.tradeDate.toLocaleDateString('pt-PT'),
+        mongodbimage: getMongodbImageId(randomProduct.image),
         image: `/mongodb/img/product/${randomProduct.image}`,
       };
     });
@@ -157,7 +164,7 @@ export default function DataGenerator() {
     setDataSellerName(sellerList);
     setDataBroker(brokerList);
 
-    //saveData(products, "data-product.json");
+    saveData(products, "data-product.json");
   }, [
     CommodityData,
     city,

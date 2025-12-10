@@ -16,6 +16,7 @@ import geoVianaJson from '../data/geo-viana.json';
 import geoVilarealJson from '../data/geo-vilareal.json';
 import geoSetubalJson from '../data/geo-setubal.json';
 import storeProductJson from '../data/store-product.json';
+import mongodbImageJson from '../data/mongodb-image.json';
 
 import dataProductJson from '../data/data-product.json';
 import dataProductNameJson from '../data/data-product-name.json';
@@ -166,6 +167,8 @@ export function GlobalProvider({ children }) {
   const [filteredProduct, setFilteredProduct] = useState([]);
   const [mapPanel, setMapPanel] = useState(true);
 
+  const [mongodbImage, setMongodbImage] = useState(mongodbImageJson);
+
   useEffect(() => {
     if (!dataProduct) {
       setFilteredProduct([]);
@@ -314,6 +317,7 @@ export function GlobalProvider({ children }) {
         setFilteredProduct,
         mapPanel,
         setMapPanel,
+        mongodbImage, setMongodbImage,
       }}
     >
       {children}
