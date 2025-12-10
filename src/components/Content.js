@@ -1,18 +1,12 @@
 'use client';
 
-import React, { useContext } from 'react';
-import { Box, Paper } from '@mui/material';
+import React, { useContext, useState } from 'react';
+import { Box, Paper, Button } from '@mui/material';
 import { GlobalContext } from '../context/GlobalContext';
-//import LeafletMap from '../components/LeafletMap';
-//import ProductDataView from '../components/ProductDataView';
 import dynamic from 'next/dynamic';
 
-const ProductDataView = dynamic(() => import('../components/ProductDataView'), {
-  ssr: false,
-});
-const LeafletMap = dynamic(() => import('../components/LeafletMap'), {
-  ssr: false,
-});
+const ProductDataView = dynamic(() => import('../components/ProductDataView'), { ssr: false });
+const LeafletMap = dynamic(() => import('../components/LeafletMap'), { ssr: false });
 
 const Content = () => {
   const {
@@ -48,6 +42,7 @@ const Content = () => {
     setGender,
     geoLocation,
     setGeoLocation,
+    mapPanel, setMapPanel,
   } = useContext(GlobalContext);
 
   return (
@@ -55,7 +50,7 @@ const Content = () => {
       sx={{
         display: 'flex',
         flexDirection: { xs: 'column', md: 'row' },
-        height: 'calc(100vh - 128px)', // Full viewport height minus header
+        height: 'calc(100vh - 128px)',
         width: '100%',
         gap: 2,
         p: 2,
@@ -66,7 +61,7 @@ const Content = () => {
       {/* Left Column: Table */}
       <Box
         sx={{
-          flex: 1,
+          flex: mapPanel ? 1 : 1, // table takes full width if map hidden
           minWidth: 0,
           height: { xs: '50%', md: '100%' },
         }}
@@ -86,32 +81,34 @@ const Content = () => {
       </Box>
 
       {/* Right Column: Map */}
-      <Box
-        sx={{
-          flex: 1,
-          minWidth: 0,
-          height: { xs: '50%', md: '100%' },
-        }}
-      >
-        <Paper
+      {mapPanel && (
+        <Box
           sx={{
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            overflow: 'auto',
+            flex: 1,
+            minWidth: 0,
+            height: { xs: '50%', md: '100%' },
           }}
         >
-          <Box
+          <Paper
             sx={{
-              flex: 1,
-              position: 'relative',
-              overflow: 'hidden',
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              overflow: 'auto',
             }}
           >
-            <LeafletMap />
-          </Box>
-        </Paper>
-      </Box>
+            <Box
+              sx={{
+                flex: 1,
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+            >
+              <LeafletMap />
+            </Box>
+          </Paper>
+        </Box>
+      )}
     </Box>
   );
 };

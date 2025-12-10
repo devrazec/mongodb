@@ -91,41 +91,10 @@ const ProductDataView = () => {
     setSelectedProduct,
     hoverProductId,
     setHoverProductId,
+    selectedProductName,
+    setSelectedProductName,
+    filteredProduct, setFilteredProduct,
   } = useContext(GlobalContext);
-
-  const filteredData = () => {
-    if (!dataProduct) return [];
-
-    let filtered = [...dataProduct];
-
-    if (selectedCategory.length > 0) {
-      filtered = filtered.filter(p => selectedCategory.includes(p.category));
-    }
-    if (selectedCity.length > 0) {
-      filtered = filtered.filter(p => selectedCity.includes(p.location));
-    }
-    if (selectedColor.length > 0) {
-      filtered = filtered.filter(p => selectedColor.includes(p.color));
-    }
-    if (selectedGender.length > 0) {
-      filtered = filtered.filter(p => selectedGender.includes(p.gender));
-    }
-
-    // Sorting
-    if (sortField) {
-      filtered.sort((a, b) => {
-        let valA = a[sortField];
-        let valB = b[sortField];
-        if (typeof valA === 'string') valA = valA.toLowerCase();
-        if (typeof valB === 'string') valB = valB.toLowerCase();
-        if (valA < valB) return sortOrder === 1 ? -1 : 1;
-        if (valA > valB) return sortOrder === 1 ? 1 : -1;
-        return 0;
-      });
-    }
-
-    return filtered;
-  };
 
   const getSeverity = product => {
     switch (product.status) {
@@ -143,12 +112,11 @@ const ProductDataView = () => {
   };
 
   const listItem = product => {
-    const isSelected = selectedProduct?.id === product.id;
 
     return (
       <div className="col-12" key={product.id}>
         <div
-          className={`p-4 shadow-2 border-round-xl surface-card card-item
+          className={`flex flex-column xl:flex-row xl:align-items-start m-2 p-4 gap-4 shadow-2 border-round-xl surface-card card-item
       ${selectedProduct?.id === product.id ? 'card-item-selected' : ''}
       ${hoverProductId === product.id ? 'card-item-selected' : ''}`}
           onMouseEnter={() => setHoverProductId(product.id)}
@@ -165,6 +133,8 @@ const ProductDataView = () => {
 
           <div className="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
             <div className="flex flex-column align-items-center sm:align-items-start gap-3">
+              
+              
               <div className="text-2xl font-bold text-gray-900">
                 {product.name}
               </div>
@@ -201,7 +171,6 @@ const ProductDataView = () => {
   };
 
   const gridItem = product => {
-    const isSelected = selectedProduct?.id === product.id;
 
     return (
       <div className="col-12 sm:col-6 lg:col-12 xl:col-4 p-2" key={product.id}>
@@ -288,7 +257,7 @@ const ProductDataView = () => {
   return (
     <div className="card" style={{ height: '100%', overflowY: 'auto' }}>
       <DataView
-        value={filteredData()}
+        value={filteredProduct}
         listTemplate={listTemplate}
         layout={productLayout}
         paginator

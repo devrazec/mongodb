@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 import geoPortugalJson from '../data/geo-portugal.json';
 import geoLisbonJson from '../data/geo-lisbon.json';
@@ -162,6 +162,60 @@ export function GlobalProvider({ children }) {
   const [selectedProduct, setSelectedProduct] = useState([]);
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [hoverProductId, setHoverProductId] = useState(null);
+  const [selectedProductName, setSelectedProductName] = useState(null);
+  const [filteredProduct, setFilteredProduct] = useState([]);
+  const [mapPanel, setMapPanel] = useState(true);
+
+  useEffect(() => {
+    if (!dataProduct) {
+      setFilteredProduct([]);
+      return;
+    }
+
+    let filtered = [...dataProduct];
+
+    if (selectedCategory.length > 0) {
+      filtered = filtered.filter(p => selectedCategory.includes(p.category));
+    }
+    if (selectedCity.length > 0) {
+      filtered = filtered.filter(p => selectedCity.includes(p.location));
+    }
+    if (selectedColor.length > 0) {
+      filtered = filtered.filter(p => selectedColor.includes(p.color));
+    }
+    if (selectedGender.length > 0) {
+      filtered = filtered.filter(p => selectedGender.includes(p.gender));
+    }
+    if (selectedProductName) {
+      filtered = filtered.filter(p =>
+        p.name.toLowerCase().includes(selectedProductName.toLowerCase())
+      );
+    }
+
+    // Sorting
+    if (sortField) {
+      filtered.sort((a, b) => {
+        let valA = a[sortField];
+        let valB = b[sortField];
+        if (typeof valA === 'string') valA = valA.toLowerCase();
+        if (typeof valB === 'string') valB = valB.toLowerCase();
+        if (valA < valB) return sortOrder === 1 ? -1 : 1;
+        if (valA > valB) return sortOrder === 1 ? 1 : -1;
+        return 0;
+      });
+    }
+
+    setFilteredProduct(filtered);
+  }, [
+    dataProduct,
+    selectedCategory,
+    selectedCity,
+    selectedColor,
+    selectedGender,
+    selectedProductName,
+    sortField,
+    sortOrder,
+  ]);
 
   return (
     <GlobalContext.Provider
@@ -176,7 +230,6 @@ export function GlobalProvider({ children }) {
         setSelectedLanguage,
         language,
         setLanguage,
-
         selectedCity,
         setSelectedCity,
         city,
@@ -247,6 +300,10 @@ export function GlobalProvider({ children }) {
         setSelectedProduct,
         hoverProductId,
         setHoverProductId,
+        selectedProductName,
+        setSelectedProductName,
+        filteredProduct, setFilteredProduct,
+        mapPanel, setMapPanel,
       }}
     >
       {children}

@@ -34,11 +34,12 @@ const ProductMarker = () => {
     setSelectedProduct,
     hoverProductId,
     setHoverProductId,
+    filteredProduct, setFilteredProduct,
   } = useContext(GlobalContext);
 
   return (
     <>
-      {dataProduct.map(item => (
+      {filteredProduct.map(item => (
         <Marker
           key={item.id}
           position={[item.lat, item.lng]}
