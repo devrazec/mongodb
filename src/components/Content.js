@@ -3,8 +3,16 @@
 import React, { useContext } from 'react';
 import { Box, Paper } from '@mui/material';
 import { GlobalContext } from '../context/GlobalContext';
-import LeafletMap from '../components/LeafletMap';
-import ProductDataView from '../components/ProductDataView';
+//import LeafletMap from '../components/LeafletMap';
+//import ProductDataView from '../components/ProductDataView';
+import dynamic from 'next/dynamic';
+
+const ProductDataView = dynamic(() => import('../components/ProductDataView'), {
+  ssr: false,
+});
+const LeafletMap = dynamic(() => import('../components/LeafletMap'), {
+  ssr: false,
+});
 
 const Content = () => {
   const {
