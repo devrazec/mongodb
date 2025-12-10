@@ -157,7 +157,7 @@ export default function DataGenerator() {
     setDataSellerName(sellerList);
     setDataBroker(brokerList);
 
-    saveData(products, "data-product.json");
+    //saveData(products, "data-product.json");
   }, [
     CommodityData,
     city,

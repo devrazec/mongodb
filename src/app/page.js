@@ -7,7 +7,7 @@ import Content from '../components/Content';
 export default function Home() {
   return (
     <>
-      <DataGenerator />
+      {/* <DataGenerator /> */}
       <Header />
       <Content />
     </>

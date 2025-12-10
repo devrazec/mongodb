@@ -197,8 +197,16 @@ export function GlobalProvider({ children }) {
       filtered.sort((a, b) => {
         let valA = a[sortField];
         let valB = b[sortField];
-        if (typeof valA === 'string') valA = valA.toLowerCase();
-        if (typeof valB === 'string') valB = valB.toLowerCase();
+
+        if (sortField === 'price') {
+          // Remove any non-digit characters (like currency symbols) and convert to number
+          valA = Number(String(valA).replace(/[^\d.-]/g, ''));
+          valB = Number(String(valB).replace(/[^\d.-]/g, ''));
+        } else if (typeof valA === 'string') {
+          valA = valA.toLowerCase();
+          valB = valB.toLowerCase();
+        }
+
         if (valA < valB) return sortOrder === 1 ? -1 : 1;
         if (valA > valB) return sortOrder === 1 ? 1 : -1;
         return 0;
