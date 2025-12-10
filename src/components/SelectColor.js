@@ -5,11 +5,7 @@ import { GlobalContext } from '../context/GlobalContext';
 import { MultiSelect } from 'primereact/multiselect';
 
 const SelectColor = () => {
-  const {
-    selectedColor,
-    setSelectedColor,
-    color,
-  } = useContext(GlobalContext);
+  const { selectedColor, setSelectedColor, color } = useContext(GlobalContext);
 
   return (
     <div className="p-field">

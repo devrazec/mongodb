@@ -1,10 +1,7 @@
 'use client';
 
 import React, { useContext } from 'react';
-import {
-  Box,
-  Paper,
-} from '@mui/material';
+import { Box, Paper } from '@mui/material';
 import { GlobalContext } from '../context/GlobalContext';
 import LeafletMap from '../components/LeafletMap';
 import ProductDataView from '../components/ProductDataView';

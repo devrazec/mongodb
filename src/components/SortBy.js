@@ -5,12 +5,8 @@ import { GlobalContext } from '../context/GlobalContext';
 import { Button } from 'primereact/button';
 
 const SortBy = () => {
-  const {
-    sortField,
-    setSortField,
-    sortOrder,
-    setSortOrder,
-  } = useContext(GlobalContext);
+  const { sortField, setSortField, sortOrder, setSortOrder } =
+    useContext(GlobalContext);
 
   const handleClick = field => {
     if (sortField === field) {

@@ -26,7 +26,7 @@
     // Relaxed rules added
     "react/react-in-jsx-scope": "off",
     "react/jsx-uses-react": "off",
-    "no-unused-vars": "warn",
+    "no-unused-vars": "off",
     "no-console": "off",
     "react-hooks/rules-of-hooks": "warn",
     "react-hooks/exhaustive-deps": "warn"

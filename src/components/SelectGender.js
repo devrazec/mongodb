@@ -5,11 +5,8 @@ import { GlobalContext } from '../context/GlobalContext';
 import { MultiSelect } from 'primereact/multiselect';
 
 const SelectGender = () => {
-  const {
-    selectedGender,
-    setSelectedGender,
-    gender,
-  } = useContext(GlobalContext);
+  const { selectedGender, setSelectedGender, gender } =
+    useContext(GlobalContext);
 
   return (
     <div className="p-field">
