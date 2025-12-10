@@ -1,4 +1,7 @@
-import fs from 'fs';
+// Disabled route for saving JSON data to a file
+// Was in src/app/saveData/route.js
+
+/* import fs from 'fs';
 import path from 'path';
 
 export async function POST(req) {
@@ -37,3 +40,4 @@ export async function OPTIONS() {
     },
   });
 }
+ */

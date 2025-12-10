@@ -1,41 +1,14 @@
 'use client';
 
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
 import { MultiSelect } from 'primereact/multiselect';
 
 const SelectGender = () => {
   const {
-    darkMode,
-    setDarkMode,
-    mobileDevice,
-    setMobileDevice,
-    mobilePanel,
-    setMobilePanel,
-    selectedLanguage,
-    setSelectedLanguage,
-    language,
-    setLanguage,
-    selectedProduct,
-    setSelectedProduct,
-    product,
-    setProduct,
-    selectedCity,
-    setSelectedCity,
-    city,
-    setCity,
-    selectedCategory,
-    setSelectedCategory,
-    category,
-    setCategory,
-    selectedColor,
-    setSelectedColor,
-    color,
-    setColor,
     selectedGender,
     setSelectedGender,
     gender,
-    setGender,
   } = useContext(GlobalContext);
 
   return (

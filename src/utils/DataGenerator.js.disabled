@@ -1,81 +1,18 @@
 'use client';
 
-import React, { useState, useContext, useEffect, useMemo } from 'react';
+import { useState, useContext, useEffect, useMemo } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
 import { useDemoData } from '@mui/x-data-grid-generator';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function DataGenerator() {
   const {
-    darkMode,
-    setDarkMode,
-    mobileDevice,
-    setMobileDevice,
-    mobilePanel,
-    setMobilePanel,
-    selectedLanguage,
-    setSelectedLanguage,
-    language,
-    setLanguage,
-    selectedProduct,
-    setSelectedProduct,
-    selectedCity,
-    setSelectedCity,
     city,
-    setCity,
-    selectedCategory,
-    setSelectedCategory,
-    category,
-    setCategory,
-    selectedColor,
-    setSelectedColor,
-    color,
-    setColor,
-    selectedGender,
-    setSelectedGender,
-    gender,
-    setGender,
-    geoZoomView,
-    setGeoZoomView,
-    geoInitialView,
-    setGeoInitialView,
-    geoPortugal,
-    setGeoPortugal,
-    geoLisbon,
-    setGeoLisbon,
-    geoPorto,
-    setGeoPorto,
-    geoFaro,
-    setGeoFaro,
-    geoCoimbra,
-    setGeoCoimbra,
-    geoBraga,
-    setGeoBraga,
-    geoBraganca,
-    setGeoBraganca,
-    geoLeiria,
-    setGeoLeiria,
-    geoGuarda,
-    setGeoGuarda,
-    geoBeja,
-    setGeoBeja,
-    geoViana,
-    setGeoViana,
-    geoVilaReal,
-    setGeoVilaReal,
-    geoSetubal,
-    setGeoSetubal,
     geoCityBounds,
-    setGeoCityBounds,
     storeProduct,
-    setStoreProduct,
-    dataProduct,
     setDataProduct,
-    dataProductName,
     setDataProductName,
-    dataSellerName,
     setDataSellerName,
-    dataBroker,
     setDataBroker,
   } = useContext(GlobalContext);
 
@@ -185,7 +122,7 @@ export default function DataGenerator() {
     return unique;
   }, [products]);
 
-  async function saveData(data, fileName) {
+  /*   async function saveData(data, fileName) {
     try {
       const response = await fetch('/mongodb/api/saveData', {
         method: 'POST',
@@ -198,7 +135,7 @@ export default function DataGenerator() {
     } catch (err) {
       console.error('SAVE FAILED:', err);
     }
-  }
+  } */
 
   useEffect(() => {
     const ready =

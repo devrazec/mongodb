@@ -1,16 +1,9 @@
 'use client';
 
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import {
   Box,
   Paper,
-  Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
 } from '@mui/material';
 import { GlobalContext } from '../context/GlobalContext';
 import LeafletMap from '../components/LeafletMap';

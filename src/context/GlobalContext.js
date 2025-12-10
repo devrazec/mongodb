@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
 
 import geoPortugalJson from '../data/geo-portugal.json';
 import geoLisbonJson from '../data/geo-lisbon.json';

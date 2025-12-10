@@ -6,32 +6,9 @@ import { MultiSelect } from 'primereact/multiselect';
 
 const SelectColor = () => {
   const {
-    darkMode,
-    setDarkMode,
-    mobileDevice,
-    setMobileDevice,
-    mobilePanel,
-    setMobilePanel,
-    selectedLanguage,
-    setSelectedLanguage,
-    language,
-    setLanguage,
-    selectedProduct,
-    setSelectedProduct,
-    product,
-    setProduct,
-    selectedCity,
-    setSelectedCity,
-    city,
-    setCity,
-    selectedCategory,
-    setSelectedCategory,
-    category,
-    setCategory,
     selectedColor,
     setSelectedColor,
     color,
-    setColor,
   } = useContext(GlobalContext);
 
   return (
