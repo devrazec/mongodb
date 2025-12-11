@@ -64,7 +64,8 @@ const ProductMarker = () => {
                   width="100%"
                   preview={true}
                 />
-                <div className="text-1xl font-bold text-gray-900"
+                <div
+                  className="text-1xl font-bold text-gray-900"
                   style={{
                     display: '-webkit-box',
                     WebkitLineClamp: 2, // Limit to 2 lines

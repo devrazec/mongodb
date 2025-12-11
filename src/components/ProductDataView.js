@@ -79,7 +79,8 @@ const ProductDataView = () => {
 
         <div className="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
           <div className="flex flex-column align-items-center sm:align-items-start gap-3">
-            <div className="text-2xl font-bold text-gray-900"
+            <div
+              className="text-2xl font-bold text-gray-900"
               style={{
                 display: '-webkit-box',
                 WebkitLineClamp: 2,
@@ -109,9 +110,7 @@ const ProductDataView = () => {
               </span>
             </div>
             <div className="flex align-items-start justify-content-between w-full">
-              <span className="font-semibold">
-                Seller: {product.seller}
-              </span>
+              <span className="font-semibold">Seller: {product.seller}</span>
             </div>
           </div>
 
@@ -151,7 +150,8 @@ const ProductDataView = () => {
               width="100%"
               preview={true}
             />
-            <div className="text-2xl font-bold text-gray-900"
+            <div
+              className="text-2xl font-bold text-gray-900"
               style={{
                 display: '-webkit-box',
                 WebkitLineClamp: 2,
@@ -207,11 +207,10 @@ const ProductDataView = () => {
     );
   };
 
-  const onPage = (event) => {
+  const onPage = event => {
     setFirstRecord(event.first);
     setNumberRecords(event.rows);
     setData(filteredProduct.slice(event.first, event.first + event.rows));
-
   };
 
   return (
@@ -229,7 +228,6 @@ const ProductDataView = () => {
         totalRecords={totalRecords}
         rowsPerPageOptions={[10, 20, 30]}
         onPage={onPage}
-
       />
     </div>
   );

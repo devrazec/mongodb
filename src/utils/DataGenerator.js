@@ -14,7 +14,8 @@ export default function DataGenerator() {
     setDataProductName,
     setDataSellerName,
     setDataBroker,
-    mongodbImage, setMongodbImage,
+    mongodbImage,
+    setMongodbImage,
   } = useContext(GlobalContext);
 
   const [saved, setSaved] = useState(false);
@@ -40,7 +41,7 @@ export default function DataGenerator() {
   }
 
   function getMongodbImageId(filename) {
-    if (filename === ".DS_Store") return null;
+    if (filename === '.DS_Store') return null;
     return mongodbImage[filename] || null;
   }
 
@@ -164,7 +165,7 @@ export default function DataGenerator() {
     setDataSellerName(sellerList);
     setDataBroker(brokerList);
 
-    saveData(products, "data-product.json");
+    saveData(products, 'data-product.json');
   }, [
     CommodityData,
     city,

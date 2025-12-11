@@ -171,8 +171,6 @@ export function GlobalProvider({ children }) {
 
   const [mongodbImage, setMongodbImage] = useState(mongodbImageJson);
 
-
-
   useEffect(() => {
     if (!dataProduct) {
       setFilteredProduct([]);
@@ -321,8 +319,8 @@ export function GlobalProvider({ children }) {
         setFilteredProduct,
         mapPanel,
         setMapPanel,
-        mongodbImage, setMongodbImage,
-
+        mongodbImage,
+        setMongodbImage,
       }}
     >
       {children}
