@@ -150,7 +150,9 @@ export function GlobalProvider({ children }) {
   const [geoSetubal, setGeoSetubal] = useState(geoSetubalJson);
   const [storeProduct, setStoreProduct] = useState(storeProductJson);
 
-  const [dataProduct, setDataProduct] = useState(dataProductJson);
+  //const [dataProduct, setDataProduct] = useState(dataProductJson);
+  const [dataProduct, setDataProduct] = useState(dataProductJson.slice(0, 200));
+
   const [dataProductName, setDataProductName] = useState(dataProductNameJson);
   const [dataSellerName, setDataSellerName] = useState(dataSellerNameJson);
   const [dataBroker, setDataBroker] = useState(dataBrokerJson);
@@ -168,6 +170,8 @@ export function GlobalProvider({ children }) {
   const [mapPanel, setMapPanel] = useState(true);
 
   const [mongodbImage, setMongodbImage] = useState(mongodbImageJson);
+
+
 
   useEffect(() => {
     if (!dataProduct) {
@@ -318,6 +322,7 @@ export function GlobalProvider({ children }) {
         mapPanel,
         setMapPanel,
         mongodbImage, setMongodbImage,
+
       }}
     >
       {children}

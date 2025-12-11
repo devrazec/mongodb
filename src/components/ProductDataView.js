@@ -4,100 +4,33 @@ import React, { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
 import { Button } from 'primereact/button';
 import { DataView, DataViewLayoutOptions } from 'primereact/dataview';
-import { Rating } from 'primereact/rating';
 import { Tag } from 'primereact/tag';
-import { classNames } from 'primereact/utils';
 import { Image } from 'primereact/image';
 
 const ProductDataView = () => {
   const {
-    darkMode,
-    setDarkMode,
-    mobileDevice,
-    setMobileDevice,
-    mobilePanel,
-    setMobilePanel,
-    selectedLanguage,
-    setSelectedLanguage,
-    language,
-    setLanguage,
-    selectedCity,
-    setSelectedCity,
-    city,
-    setCity,
-    selectedCategory,
-    setSelectedCategory,
-    category,
-    setCategory,
-    selectedColor,
-    setSelectedColor,
-    color,
-    setColor,
-    selectedGender,
-    setSelectedGender,
-    gender,
-    setGender,
-    geoZoomView,
-    setGeoZoomView,
-    geoInitialView,
-    setGeoInitialView,
-    geoPortugal,
-    setGeoPortugal,
-    geoLisbon,
-    setGeoLisbon,
-    geoPorto,
-    setGeoPorto,
-    geoFaro,
-    setGeoFaro,
-    geoCoimbra,
-    setGeoCoimbra,
-    geoBraga,
-    setGeoBraga,
-    geoBraganca,
-    setGeoBraganca,
-    geoLeiria,
-    setGeoLeiria,
-    geoGuarda,
-    setGeoGuarda,
-    geoBeja,
-    setGeoBeja,
-    geoViana,
-    setGeoViana,
-    geoVilaReal,
-    setGeoVilaReal,
-    geoSetubal,
-    setGeoSetubal,
-    geoCityBounds,
-    setGeoCityBounds,
-    storeProduct,
-    setStoreProduct,
     dataProduct,
-    setDataProduct,
-    dataProductName,
-    setDataProductName,
-    dataSellerName,
-    setDataSellerName,
-    dataBroker,
-    setDataBroker,
-    sortField,
-    setSortField,
-    sortOrder,
-    setSortOrder,
     productLayout,
-    setProductLayout,
-    selectedProductId,
-    setSelectedProductId,
     selectedProduct,
     setSelectedProduct,
     hoverProductId,
     setHoverProductId,
-    selectedProductName,
-    setSelectedProductName,
     filteredProduct,
-    setFilteredProduct,
     mapPanel,
-    setMapPanel,
   } = useContext(GlobalContext);
+
+  const [firstRecord, setFirstRecord] = useState(0);
+  const [numberRecords, setNumberRecords] = useState(20);
+  const [totalRecords, setTotalRecords] = useState(filteredProduct.length);
+
+  const [data, setData] = useState(filteredProduct.slice(0, numberRecords));
+
+  useEffect(() => {
+    setFirstRecord(0); // reset to first page
+    setNumberRecords(20); // default rows per page
+    setTotalRecords(filteredProduct.length);
+    setData(filteredProduct.slice(0, 20)); // first page
+  }, [filteredProduct]);
 
   const gridClass = mapPanel
     ? 'col-12 sm:col-6 md:col-4 lg:col-3 xl:col-4' // Map visible: 3–4 columns max
@@ -257,14 +190,29 @@ const ProductDataView = () => {
     );
   };
 
+  const onPage = (event) => {
+    setFirstRecord(event.first);
+    setNumberRecords(event.rows);
+    setData(filteredProduct.slice(event.first, event.first + event.rows));
+
+  };
+
   return (
     <div className="card" style={{ height: '100%', overflowY: 'auto' }}>
       <DataView
-        value={filteredProduct}
+        value={data}
         listTemplate={listTemplate}
         layout={productLayout}
+        lazy
         paginator
-        rows={12}
+        alwaysShowPaginator
+        paginatorPosition="top"
+        rows={numberRecords}
+        first={firstRecord}
+        totalRecords={totalRecords}
+        rowsPerPageOptions={[10, 20, 30]}
+        onPage={onPage}
+
       />
     </div>
   );

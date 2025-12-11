@@ -26,6 +26,7 @@ const FilterBar = () => {
     setSelectedProduct,
     product,
     setProduct,
+    filteredProduct,
   } = useContext(GlobalContext);
 
   return (
@@ -57,6 +58,7 @@ const FilterBar = () => {
       <SelectCategory />
       <SelectColor />
       <SelectCity />
+      <div className="text-white">Products: {filteredProduct.length}</div>
     </Box>
   );
 };

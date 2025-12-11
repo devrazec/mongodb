@@ -59,3 +59,10 @@ body {
 .card-item {
   transition: all 0.2s ease-in-out;
 }
+
+.p-dataview .p-paginator {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--surface-card); /* match your card background */
+}
