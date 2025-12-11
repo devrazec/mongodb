@@ -100,9 +100,12 @@ npm i -S better-sqlite3
 
 http://localhost:3000
 
-![Pic0](./img/pic0.png)
-![Pic1](./img/pic1.png)
-![Pic2](./img/pic2.png)
+![Pic1](./public/img/pic1.png)
+![Pic2](./public/img/pic2.png)
+![Pic3](./public/img/pic3.png)
+![Pic4](./public/img/pic4.png)
+![Pic5](./public/img/pic5.png)
+
 
 # Demo
 
