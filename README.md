@@ -1,6 +1,30 @@
-# mongodb
+# Dynamic Amazon
 
-Building a Project with Mongodb
+This is a dynamic e-commerce project built with React and Material-UI (MUI) and Primereact. 
+
+# 🧰 Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| React	| Frontend UI framework |
+| React-Leaflet | Map engine |
+| Leaflet | Geospatial rendering & marker system |
+| Material UI | UI components |
+| DataView | Custom renderCell layouts |
+| Data Generation | Generator for demo data |
+| Context API | Global state management |
+| CSS | Styling & layout |
+
+## Interactive DataView:
+
+- Custom layout with company logo and detailed info
+- Action buttons: Buy, Map
+- Responsive and clean styling
+- Top bar with total results and title
+- Map Integration
+- Each product includes coordinates for its location
+- Can link to Google Maps or other map integrations
+- Real-time map filtering
 
 # Commands
 
@@ -31,14 +55,15 @@ next.config.mjs
 
 -- Setup package.json
 
-"scripts": {
-"dev": "next dev",
-"build": "next build && next export",
-"start": "next start",
-"lint": "next lint",
-"format": "prettier --write .",
-"deploy": "gh-pages -d out"
-},
+  "scripts": {
+    "dev": "next dev & sleep 2 && open http://localhost:3000/mongodb",
+    "build": "next build && next export",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "predeploy": "echo > out/.nojekyll",
+    "deploy": "gh-pages -d out"
+  },
 
 "repository": {
 "type": "git",
@@ -110,6 +135,8 @@ http://localhost:3000
 # Demo
 
 https://devrazec.github.io/mongodb
+https://youtu.be/VBjqTNEf0zU
+https://www.canva.com/design/DAG7MuFjm_I/G-UKytXgFrzB5Uha73sEGw/view?utm_content=DAG7MuFjm_I&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h3668ad3a14#3
 
 # Project
 
