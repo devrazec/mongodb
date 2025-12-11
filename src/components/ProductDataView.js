@@ -37,7 +37,7 @@ const ProductDataView = () => {
     : 'col-12 sm:col-6 md:col-4 lg:col-3 xl:col-2';
 
   const listClass = mapPanel
-    ? 'flex flex-column xl:flex-row xl:align-items-start m-2 p-4 gap-4 shadow-2 border-round-xl surface-card card-item'
+    ? 'flex flex-column xl:flex-row xl:align-items-start m-2 p-4 gap-4 shadow-2 border-round-xl surface-card card-item w-full'
     : 'flex flex-column sm:flex-row flex-wrap m-2 p-4 gap-4 shadow-2 border-round-xl surface-card card-item';
 
   const itemStyle = mapPanel ? {} : { width: 'calc(50% - 1rem)' };
@@ -73,13 +73,25 @@ const ProductDataView = () => {
           className="w-9 sm:w-16rem xl:w-10rem shadow-2 border-round"
           src={product.image}
           alt={product.name}
-          width="60%"
+          width="100%"
           preview={true}
         />
 
         <div className="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
           <div className="flex flex-column align-items-center sm:align-items-start gap-3">
-            <div className="text-2xl font-bold text-gray-900">
+            <div className="text-2xl font-bold text-gray-900"
+              style={{
+                display: '-webkit-box',
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                //fontSize: '1rem',
+                //lineHeight: '1.2rem',
+                //height: '2.4rem',
+                //fontWeight: 600,
+              }}
+            >
               {product.name}
             </div>
 
@@ -96,9 +108,14 @@ const ProductDataView = () => {
                 Location: {product.location}
               </span>
             </div>
+            <div className="flex align-items-start justify-content-between w-full">
+              <span className="font-semibold">
+                Seller: {product.seller}
+              </span>
+            </div>
           </div>
 
-          <div className="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
+          <div className="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2 w-full">
             <span className="text-2xl font-semibold">€ {product.price}</span>
             <Button icon="pi pi-shopping-cart" className="p-button-rounded" />
           </div>
@@ -134,17 +151,17 @@ const ProductDataView = () => {
               width="100%"
               preview={true}
             />
-            <div
+            <div className="text-2xl font-bold text-gray-900"
               style={{
                 display: '-webkit-box',
                 WebkitLineClamp: 2,
                 WebkitBoxOrient: 'vertical',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
-                fontSize: '1rem',
-                lineHeight: '1.2rem',
-                height: '2.4rem',
-                fontWeight: 600,
+                //fontSize: '1rem',
+                //lineHeight: '1.2rem',
+                //height: '2.4rem',
+                //fontWeight: 600,
               }}
             >
               {product.name}
