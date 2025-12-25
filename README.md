@@ -29,9 +29,9 @@ This is a dynamic e-commerce project built with React and Material-UI (MUI) and 
 # Commands
 
 ```
--- Crrate App
+-- Create App
 
-user@mac mongodb % npx create-next-app@15 .
+npx create-next-app@15 .
 
 ✔ Would you like to use TypeScript? … No
 ✔ Which linter would you like to use? › ESLint

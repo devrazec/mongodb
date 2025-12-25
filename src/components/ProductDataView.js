@@ -222,7 +222,7 @@ const ProductDataView = () => {
         lazy
         paginator
         alwaysShowPaginator
-        paginatorPosition="top"
+        paginatorPosition="bottom"
         rows={numberRecords}
         first={firstRecord}
         totalRecords={totalRecords}

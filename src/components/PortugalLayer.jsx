@@ -5,7 +5,7 @@ import { useMap } from 'react-leaflet';
 import L from 'leaflet';
 import { GlobalContext } from '../context/GlobalContext';
 
-const MaskLayer = () => {
+const PortugalLayer = () => {
   const map = useMap();
 
   const {
@@ -86,4 +86,4 @@ const MaskLayer = () => {
   return null;
 };
 
-export default MaskLayer;
+export default PortugalLayer;
